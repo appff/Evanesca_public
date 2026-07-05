@@ -10,6 +10,7 @@ Status: draft checklist for `v0.1.0`.
 - [x] Reproducibility guide added.
 - [x] Artifact manifest draft added.
 - [x] Example dataset directory added.
+- [x] Replayed bZx example dataset added.
 - [x] Public artifact validation script added.
 - [x] Public claims policy added.
 - [x] Source code guide added.
@@ -36,6 +37,7 @@ Status: draft checklist for `v0.1.0`.
 - [x] Verify `npm install` completes.
 - [ ] Verify `npm run build` (currently fails on existing repository-wide TypeScript errors).
 - [ ] Verify documented replay subset.
+- [x] Verify bZx public-schema replay command.
 - [x] Add experimental JSON export CLI.
 - [ ] Stabilize JSON export CLI output against `docs/public-api/analysis-result.schema.md`.
 - [x] Verify `npm run analyze -- --help`.

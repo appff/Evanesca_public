@@ -70,6 +70,12 @@ npm run analyze -- --tx <transaction-hash> --chain ethereum --out out/analysis.j
 
 The export wrapper is experimental and intended to stabilize the public artifact/frontend contract before the frontend is built.
 
+Current checked-in replayed example:
+
+```bash
+npm run analyze -- --tx 0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838 --chain ethereum --out docs/example-datasets/bzx-analysis-result.json --pretty
+```
+
 ### Level 2: Confirmed-incident benchmark
 
 Run:

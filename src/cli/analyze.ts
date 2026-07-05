@@ -129,6 +129,11 @@ function createContext(): EvanescaContext {
   };
 }
 
+function prepareRuntimeDirectories(): void {
+  fs.mkdirSync(path.resolve(process.cwd(), "cache"), { recursive: true });
+  fs.mkdirSync(path.resolve(process.cwd(), "cache/pools"), { recursive: true });
+}
+
 function normalizeAction(value: unknown): string {
   const raw = String(value || "unknown").toLowerCase();
   if (raw.includes("swap")) return "swap";
@@ -297,6 +302,7 @@ function looksLikeAddress(value: string): boolean {
 
 async function main(): Promise<void> {
   const options = parseArgs(process.argv.slice(2));
+  prepareRuntimeDirectories();
   const { run } = await import("../Driver");
   const context = createContext();
   const result = await run(options.tx!, context);
@@ -338,7 +344,11 @@ async function main(): Promise<void> {
   }
 }
 
-main().catch(error => {
-  console.error(`Evanesca analysis export failed: ${error instanceof Error ? error.message : String(error)}`);
-  process.exit(1);
-});
+main()
+  .then(() => {
+    process.exit(0);
+  })
+  .catch(error => {
+    console.error(`Evanesca analysis export failed: ${error instanceof Error ? error.message : String(error)}`);
+    process.exit(1);
+  });

@@ -14,7 +14,7 @@
     "benchmark:verbose": "ts-node src/cli/benchmark.ts --verbose",
     "benchmark:compare": "ts-node src/cli/benchmark.ts --compare",
     "benchmark:lexer": "ts-node src/Benchmarks/LexerBenchmark.ts",
-    "analyze": "ts-node src/cli/analyze.ts",
+    "analyze": "ts-node --transpile-only src/cli/analyze.ts",
     "validate:public-artifacts": "node scripts/validate-public-artifacts.js",
     "clean": "rm -rf lib dist src/lib src/dist",
     "lint": "eslint src/**/*.ts",

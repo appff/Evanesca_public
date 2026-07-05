@@ -10,6 +10,16 @@
       "empiricalClaim": false
     },
     {
+      "id": "bzx-analysis-result",
+      "kind": "analysis_result",
+      "path": "docs/example-datasets/bzx-analysis-result.json",
+      "purpose": "Replayed bZx Ethereum transaction exported by the public CLI for case-study inspection.",
+      "empiricalClaim": true,
+      "txHash": "0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838",
+      "chain": "ethereum",
+      "reproductionCommand": "npm run analyze -- --tx 0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838 --chain ethereum --out docs/example-datasets/bzx-analysis-result.json --pretty"
+    },
+    {
       "id": "case-study-index",
       "kind": "index",
       "path": "docs/example-datasets/case-study-index.md",

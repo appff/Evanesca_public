@@ -48,6 +48,7 @@ fp_audit/
 test-ingest/
 test-results*/
 input-sample.txt
+out/
 
 # Local PDF rendering scratch (generated during layout inspection)
 docs/papers/evanesca/

@@ -290,10 +290,16 @@ Planned case-study set:
 | Case study | Purpose |
 |------------|---------|
 | Routine arbitrage baseline | show a profitable but non-harmful candidate |
-| bZx-style price manipulation | show a known price-manipulation playbook |
+| bZx-style price manipulation | exported public-schema example in `docs/example-datasets/bzx-analysis-result.json` |
 | Harvest-style exchange-rate manipulation | show vault or pool exchange-rate distortion |
 | TEND/WING reward distribution | show reward-allocation bias |
 | CreamY derivative pricing | show derivative exchange-rate defect |
+
+Current exported case-study artifact:
+
+| Case | Chain | Transaction | Export |
+|------|-------|-------------|--------|
+| bZx Hack | Ethereum | `0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838` | `docs/example-datasets/bzx-analysis-result.json` |
 
 Each case study should include:
 
@@ -366,9 +372,10 @@ Current status:
 - `npm install` completes.
 - `npm run analyze -- --help` completes.
 - `npm run validate:public-artifacts` completes.
+- bZx case-study export completes with `npm run analyze -- --tx 0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838 --chain ethereum --out docs/example-datasets/bzx-analysis-result.json --pretty`.
 - `npm run build` currently fails on repository-wide TypeScript issues that
   predate this release-preparation branch.
-- The example JSON is synthetic and should not be cited as an empirical result.
+- `sample-analysis-result.json` is synthetic and should not be cited as an empirical result.
 
 ## 10. Open-Source Release Scope
 

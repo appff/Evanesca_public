@@ -63,7 +63,7 @@ Status: draft checklist for `v0.1.0`.
 - [x] Configure public repo remote as `git@github.com:appff/Evanesca_public.git`.
 - [x] Add GitHub smoke-test workflow for public release checks.
 - [x] Create local initial commit in `../Evanesca-public`.
-- [ ] Push generated repository to GitHub after final review.
+- [x] Push generated repository to GitHub.
 
 ## Governance
 

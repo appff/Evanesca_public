@@ -13,8 +13,8 @@ Last updated: 2026-07-06.
 | Documentation | Draft baseline | `README.md`, `OPEN_SOURCE_PLAN.md`, `docs/public-claims.md` |
 | Reproducible artifacts | Manifest drafted, not fully verified | `docs/reproducible-artifacts/README.md` |
 | Example datasets | Synthetic schema sample added | `docs/example-datasets/sample-analysis-result.json` |
-| GitHub/Open-source release | Separate public repo configured | `git@github.com:appff/Evanesca_public.git` |
-| Separate public repo export | Generated, smoke-tested, and locally committed | `scripts/export-public-repo.sh`, `../Evanesca-public` |
+| GitHub/Open-source release | Public repo pushed | `git@github.com:appff/Evanesca_public.git` |
+| Separate public repo export | Generated, smoke-tested, committed, and pushed | `scripts/export-public-repo.sh`, `../Evanesca-public` |
 
 ## Verified This Branch
 
@@ -26,7 +26,7 @@ Last updated: 2026-07-06.
 - generated `../Evanesca-public` uses `git@github.com:appff/Evanesca_public.git` as `origin`.
 - public artifact manifest validates current defect and non-baseline hash-bundle counts.
 - GitHub Actions smoke-test workflow added for install, artifact validation, and CLI help.
-- local initial commit prepared in `../Evanesca-public`; push is still pending final review.
+- public repository `main` pushed to `git@github.com:appff/Evanesca_public.git`.
 - `.env` is not tracked; `.env.example` contains placeholder values only.
 - README local links resolve under the current file layout.
 - `docs/example-datasets/sample-analysis-result.json` parses as valid JSON.
@@ -39,12 +39,12 @@ Last updated: 2026-07-06.
 3. Public JSON export CLI exists but has not been replay-tested on curated public transactions.
 4. Existing artifacts have count manifests but still need provenance, reproduction-command, and disclosure review before public release.
 5. Technical report has an expanded public draft but still needs case-study evidence and implementation-synced constraint predicates.
-6. Separate `../Evanesca-public` export has been generated, smoke-tested, and locally committed, but still needs final human review before GitHub push.
+6. Separate `../Evanesca-public` export has been generated, smoke-tested, committed, and pushed. Remaining release work is artifact provenance/dependency/build cleanup rather than repository publication.
 
 ## Next Release Gates
 
 - Confirm `docs/public-release-inventory.md` before public push.
-- Final-review the separate public repository export before GitHub push.
+- Monitor the public smoke-test workflow after GitHub processes the push.
 - Triage dependency audit and unused dependencies.
 - Run one curated public transaction through `npm run analyze`.
 - Regenerate at least one curated transaction as public example JSON.

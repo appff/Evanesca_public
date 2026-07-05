@@ -186,7 +186,7 @@ Suggested stack:
 - [x] Generate and inspect `../Evanesca-public`.
 - [x] Configure generated repo remote as `git@github.com:appff/Evanesca_public.git`.
 - [x] Add public smoke-test GitHub workflow.
-- [ ] Push after final review.
+- [x] Push public repository `main`.
 
 ### M4: Frontend evidence explorer
 - [ ] Import Figma design system.

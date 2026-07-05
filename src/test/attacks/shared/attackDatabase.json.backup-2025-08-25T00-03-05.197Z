@@ -1,0 +1,789 @@
+{
+  "attacks": [
+    {
+      "id": "float-protocol-2022",
+      "name": "Float Protocol 2022",
+      "year": 2022,
+      "date": "2022-01-15",
+      "chain": "Ethereum",
+      "type": "oracle_manipulation",
+      "protocols": [
+        "Float"
+      ],
+      "transactionHash": "0x71872e7b12892b715833135a5dcde8d6a90892ab36c4809340c5616292f0fcfe",
+      "loss": 1.44,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 8,
+      "description": "Oracle manipulation via Uniswap V3 TWAP"
+    },
+    {
+      "id": "inverse-finance-2022",
+      "name": "Inverse Finance 2022",
+      "year": 2022,
+      "date": "2022-04-02",
+      "chain": "Ethereum",
+      "type": "flash_loan",
+      "protocols": [
+        "Inverse"
+      ],
+      "transactionHash": "0x20a6dcff06a791a7f8be9f423053ce8caee3f9eecc31df32445fc98d4ccd8365",
+      "loss": 15.6,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 9,
+      "description": "Flash loan + oracle manipulation"
+    },
+    {
+      "id": "saddle-finance-2022",
+      "name": "Saddle Finance 2022",
+      "year": 2022,
+      "date": "2022-04-30",
+      "chain": "Ethereum",
+      "type": "price_manipulation",
+      "protocols": [
+        "Saddle"
+      ],
+      "transactionHash": "0x2b023d65485c4bb68d781960c2196588d03b871dc9eb1c054f596b7ca6f7da56",
+      "loss": 10,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 8,
+      "description": "Metapool swap manipulation exploit"
+    },
+    {
+      "id": "rari-capital-2022",
+      "name": "Rari Capital 2022",
+      "year": 2022,
+      "date": "2022-04-30",
+      "chain": "Ethereum",
+      "type": "reentrancy",
+      "protocols": [
+        "Rari"
+      ],
+      "transactionHash": "0xab486012f21be741c9e674ffda227e30518e8a1e37a5f1d58d0b0d41f6e76530",
+      "loss": 79,
+      "constraints": [
+        "COLLATERAL_MANIPULATION"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 10,
+      "description": "Reentrancy exploit on Ethereum"
+    },
+    {
+      "id": "beanstalk-farms-2022",
+      "name": "BeanstalkFarms 2022",
+      "year": 2022,
+      "date": "2022-04-17",
+      "chain": "Ethereum",
+      "type": "governance",
+      "protocols": [
+        "Beanstalk"
+      ],
+      "transactionHash": "0xcd314668aaa9bbfebaf1a0bd2b6553d01dd58899c508d4729fa7311dc5d33ad7",
+      "loss": 182,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 10,
+      "description": "Governance exploit on Ethereum"
+    },
+    {
+      "id": "egd-finance-2022",
+      "name": "EGD Finance 2022",
+      "year": 2022,
+      "date": "2022-08-07",
+      "chain": "BSC",
+      "type": "price_manipulation",
+      "protocols": [
+        "EGD"
+      ],
+      "transactionHash": "0x50da0b1b6e34bce59769157df769eb45fa11efc7d0e292900d6b0a86ae66a2b3",
+      "loss": 36,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 9,
+      "description": "Price manipulation on BSC"
+    },
+    {
+      "id": "fortress-loans-2022",
+      "name": "Fortress Loans 2022",
+      "year": 2022,
+      "date": "2022-05-08",
+      "chain": "BSC",
+      "type": "flash_loan",
+      "protocols": [
+        "Fortress"
+      ],
+      "transactionHash": "0x13d19809b19ac512da6d110764caee75e2157ea62cb70937c8d9471afcb061bf",
+      "loss": 3,
+      "constraints": [
+        "DEX_K_INVARIANT"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 7,
+      "description": "Flash loan exploit on BSC"
+    },
+    {
+      "id": "crosswise-2022",
+      "name": "Crosswise 2022",
+      "year": 2022,
+      "date": "2022-01-18",
+      "chain": "BSC",
+      "type": "reentrancy",
+      "protocols": [
+        "Crosswise"
+      ],
+      "transactionHash": "0xd02e444d0ef7ff063e3c2cecceba67eae832acf3f9cf817733af9139145f479b",
+      "loss": 0.88,
+      "constraints": [
+        "DEX_K_INVARIANT"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 6,
+      "description": "Reentrancy exploit on BSC"
+    },
+    {
+      "id": "rikkei-finance-2022",
+      "name": "Rikkei Finance 2022",
+      "year": 2022,
+      "date": "2022-04-15",
+      "chain": "BSC",
+      "type": "oracle_manipulation",
+      "protocols": [
+        "Rikkei"
+      ],
+      "transactionHash": "0x93a9b022df260f1953420cd3e18789e7d1e095459e36fe2eb534918ed1687492",
+      "loss": 1.1,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 7,
+      "description": "Oracle manipulation on BSC"
+    },
+    {
+      "id": "elephant-money-2022",
+      "name": "Elephant Money 2022",
+      "year": 2022,
+      "date": "2022-04-12",
+      "chain": "BSC",
+      "type": "flash_loan",
+      "protocols": [
+        "Elephant"
+      ],
+      "transactionHash": "0xec317deb2f3efdc1dbf7ed5d3902cdf2c33ae512151646383a8cf8cbcd3d4577",
+      "loss": 11.2,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 8,
+      "description": "Flash loan exploit on BSC"
+    },
+    {
+      "id": "wiener-doge-2022",
+      "name": "Wiener DOGE 2022",
+      "year": 2022,
+      "date": "2022-04-24",
+      "chain": "BSC",
+      "type": "price_manipulation",
+      "protocols": [
+        "Wiener"
+      ],
+      "transactionHash": "0x4f2005e3815c15d1a9abd8588dd1464769a00414a6b7adcbfd75a5331d378e1d",
+      "loss": 0.074,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2022-attacks",
+      "priority": 5,
+      "description": "Price manipulation on BSC"
+    },
+    {
+      "id": "harvest-attack-1",
+      "name": "Harvest Attack #1",
+      "year": 2020,
+      "date": "2020-10-26",
+      "chain": "Ethereum",
+      "type": "flash_loan",
+      "protocols": [
+        "Harvest",
+        "Curve",
+        "Uniswap"
+      ],
+      "transactionHash": "0x35f8d2f572fceaac9288e5d462117850ef2694786992a8c3f6d02612277b0877",
+      "loss": 24,
+      "constraints": [
+        "UNIFIED_FLASH_LOAN"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 9,
+      "description": "Flash loan attack on Harvest Finance USDC/USDT vaults"
+    },
+    {
+      "id": "harvest-attack-2",
+      "name": "Harvest Attack #2",
+      "year": 2020,
+      "date": "2020-10-26",
+      "chain": "Ethereum",
+      "type": "flash_loan",
+      "protocols": [
+        "Harvest",
+        "Curve",
+        "Uniswap"
+      ],
+      "transactionHash": "0xb460b70f11a93364fecf1f3c3ec49f053aecd2d6d9912c012170aa7a0de2d526",
+      "loss": 10,
+      "constraints": [
+        "UNIFIED_FLASH_LOAN"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 8,
+      "description": "Flash loan attack on Harvest Finance USDT vault"
+    },
+    {
+      "id": "bzx-hack",
+      "name": "bZx Hack",
+      "year": 2020,
+      "date": "2020-02-15",
+      "chain": "Ethereum",
+      "type": "flash_loan",
+      "protocols": [
+        "bZx",
+        "dYdX",
+        "Compound",
+        "Uniswap",
+        "Kyber"
+      ],
+      "transactionHash": "0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838",
+      "loss": 1,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 8,
+      "description": "Flash loan attack exploiting price oracle manipulation"
+    },
+    {
+      "id": "yearn-finance",
+      "name": "Yearn Finance",
+      "year": 2021,
+      "date": "2021-02-05",
+      "chain": "Ethereum",
+      "type": "flash_loan",
+      "protocols": [
+        "Yearn",
+        "Curve",
+        "Aave"
+      ],
+      "transactionHash": "0xb094d168dd90fcd0946016b19494a966d3d2c348f57b890410c51425d89166e8",
+      "loss": 11,
+      "constraints": [
+        "UNIFIED_FLASH_LOAN"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 8,
+      "description": "DAI vault exploit via Curve pool manipulation"
+    },
+    {
+      "id": "cream-finance-1",
+      "name": "CreamFinance #1",
+      "year": 2020,
+      "date": "2021-10-27",
+      "chain": "Ethereum",
+      "type": "reentrancy",
+      "protocols": [
+        "Cream Finance"
+      ],
+      "transactionHash": "0x0fe2542079644e107cbf13690eb9c2c65963ccb79089ff96bfaf8dced2331c92",
+      "loss": 130,
+      "constraints": [
+        "COLLATERAL_MANIPULATION"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 10,
+      "description": "Flash loan + re-entrancy attack on Cream Finance"
+    },
+    {
+      "id": "origin-protocol",
+      "name": "Origin Protocol Attack",
+      "year": 2020,
+      "date": "2020-11-17",
+      "chain": "Ethereum",
+      "type": "reentrancy",
+      "protocols": [
+        "Origin Protocol"
+      ],
+      "transactionHash": "0xe1c76241dda7c5fcf1988454c621142495640e708e3f8377982f55f8cf2a8401",
+      "loss": 7,
+      "constraints": [
+        "COLLATERAL_MANIPULATION"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 7,
+      "description": "Re-entrancy attack on OUSD stablecoin"
+    },
+    {
+      "id": "warp-finance",
+      "name": "Warp Finance Attack",
+      "year": 2020,
+      "date": "2020-12-17",
+      "chain": "Ethereum",
+      "type": "price_manipulation",
+      "protocols": [
+        "Warp Finance",
+        "Uniswap"
+      ],
+      "transactionHash": "0x8bb8dc5c7c830bac85fa48acad2505e9300a91c3ff239c9517d0cae33b595090",
+      "loss": 7.7,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 7,
+      "description": "Flash loan attack manipulating LP token prices"
+    },
+    {
+      "id": "cheese-bank",
+      "name": "Cheese Bank Attack",
+      "year": 2020,
+      "date": "2020-11-06",
+      "chain": "Ethereum",
+      "type": "oracle_manipulation",
+      "protocols": [
+        "Cheese Bank",
+        "Uniswap"
+      ],
+      "transactionHash": "0x600a869aa3a259158310a233b815ff67ca41eab8961a49918c2031297a02f1cc",
+      "loss": 3.3,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 6,
+      "description": "Oracle manipulation via flash loan + LP token collateral exploitation"
+    },
+    {
+      "id": "value-defi",
+      "name": "Value DeFi Attack",
+      "year": 2020,
+      "date": "2020-11-14",
+      "chain": "Ethereum",
+      "type": "flash_loan",
+      "protocols": [
+        "Value DeFi",
+        "Curve",
+        "Aave"
+      ],
+      "transactionHash": "0x46a03488247425f845e444b9c10b52ba3c14927c687d38287c0faddc7471150a",
+      "loss": 7.4,
+      "constraints": [
+        "UNIFIED_FLASH_LOAN"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 7,
+      "description": "Complex flash loan attack exploiting Curve pool manipulation"
+    },
+    {
+      "id": "xtoken-2",
+      "name": "xToken Attack #2",
+      "year": 2021,
+      "date": "2021-05-12",
+      "chain": "Ethereum",
+      "type": "flash_loan",
+      "protocols": [
+        "xToken",
+        "Bancor",
+        "dYdX",
+        "Kyber",
+        "Balancer"
+      ],
+      "transactionHash": "0x7cc7d935d895980cdd905b2a134597fb91004b5d551d6db0fb265e3d9840da22",
+      "loss": 4.5,
+      "constraints": [
+        "UNIFIED_FLASH_LOAN"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 7,
+      "description": "Flash loan attack exploiting xSNXa and xBNTa contracts via oracle manipulation"
+    },
+    {
+      "id": "akropolis",
+      "name": "Akropolis Attack",
+      "year": 2020,
+      "date": "2020-11-12",
+      "chain": "Ethereum",
+      "type": "reentrancy",
+      "protocols": [
+        "Akropolis",
+        "dYdX"
+      ],
+      "transactionHash": "0xe1f375a47172b5612d96496a4599247049f07c9a7d518929fbe296b0c281e04d",
+      "loss": 2,
+      "constraints": [
+        "COLLATERAL_MANIPULATION"
+      ],
+      "testGroup": "legacy-attacks",
+      "priority": 6,
+      "description": "Re-entrancy attack with flash loan exploiting savings pools"
+    },
+    {
+      "id": "qubit-finance-2022",
+      "name": "Qubit Finance 2022",
+      "year": 2022,
+      "date": "2022-01-28",
+      "chain": "BSC",
+      "type": "bridge",
+      "protocols": [
+        "Qubit"
+      ],
+      "transactionHash": "0x50946e3e4ccb7d39f3512b7ecb75df66e6868b9af0eee8a7e4b61ef8a459518e",
+      "ethereumTxHash": "0xac7292e7d0ec8ebe1c94203d190874b2aab30592327b6cc875d00f18de6f3133",
+      "loss": 80,
+      "constraints": [
+        "B1_ABNORMAL_MINTING",
+        "BRIDGE_ZERO_DEPOSIT"
+      ],
+      "testGroup": "bridge-attacks",
+      "priority": 10,
+      "description": "Zero-value bridge exploit - depositETH(0) on Ethereum, mint qXETH on BSC"
+    },
+    {
+      "id": "meter-io-2022",
+      "name": "Meter.io Bridge 2022",
+      "year": 2022,
+      "date": "2022-02-05",
+      "chain": "Moonriver",
+      "type": "bridge",
+      "protocols": [
+        "Meter"
+      ],
+      "transactionHash": "0x5a87c24d0665c8f67958099d1ad22e39a03aa08d47d00b7276b8d42294ee0591",
+      "loss": 4.4,
+      "constraints": [
+        "UNIFIED_CROSS_CHAIN"
+      ],
+      "testGroup": "bridge-attacks",
+      "priority": 8,
+      "description": "Bridge wrapped token bypass"
+    },
+    {
+      "id": "radiant-capital-2024",
+      "name": "Radiant Capital 2024",
+      "year": 2024,
+      "date": "2024-01-02",
+      "chain": "Arbitrum",
+      "type": "flash_loan",
+      "protocols": [
+        "Radiant"
+      ],
+      "transactionHash": "0x1ce7e9a9e3b6dd3293c9067221ac3260858ce119ecb7ca860eac28b2474c7c9b",
+      "loss": 4.5,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2024-attacks",
+      "priority": 8,
+      "description": "Flash loan + oracle manipulation on Arbitrum"
+    },
+    {
+      "id": "gamma-strategies-2024",
+      "name": "Gamma Strategies 2024",
+      "year": 2024,
+      "date": "2024-01-04",
+      "chain": "Arbitrum",
+      "type": "price_manipulation",
+      "protocols": [
+        "Gamma"
+      ],
+      "transactionHash": "0x1b9911770ef30e51ecec6992c623c79af9871e2898d34f2adaeb8a8ab1a75354",
+      "loss": 3.4,
+      "constraints": [
+        "CONCENTRATED_LIQUIDITY_MANIPULATION"
+      ],
+      "testGroup": "2024-attacks",
+      "priority": 7,
+      "description": "Vault price manipulation on Arbitrum"
+    },
+    {
+      "id": "woofi-swap-2024",
+      "name": "WooFi Swap 2024",
+      "year": 2024,
+      "date": "2024-03-05",
+      "chain": "Arbitrum",
+      "type": "price_manipulation",
+      "protocols": [
+        "WooFi"
+      ],
+      "transactionHash": "0x57e555328b7def90e1fc2a0f7aa6df8d601a8f15803800a5aaf0a20382f21fbd",
+      "loss": 8.75,
+      "constraints": [
+        "WOOFI_SPMM_MANIPULATION"
+      ],
+      "testGroup": "2024-attacks",
+      "priority": 8,
+      "description": "sPMM price manipulation on Arbitrum"
+    },
+    {
+      "id": "mim-spell-2024",
+      "name": "MIM Spell 2024",
+      "year": 2024,
+      "date": "2024-01-30",
+      "chain": "Ethereum",
+      "type": "flash_loan",
+      "protocols": [
+        "MIM"
+      ],
+      "transactionHash": "0x26a83db7e28838dd9fee6fb7314ae58dcc6aee9a20bf224c386ff5e80f7e4cf2",
+      "loss": 6.5,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2024-attacks",
+      "priority": 7,
+      "description": "Flash loan exploit on Ethereum"
+    },
+    {
+      "id": "concentric-finance-2024",
+      "name": "Concentric Finance 2024",
+      "year": 2024,
+      "date": "2024-01-21",
+      "chain": "Arbitrum",
+      "type": "oracle_manipulation",
+      "protocols": [
+        "Concentric"
+      ],
+      "transactionHash": "0x00554de194cb38fc13df9de672e7551ec876b921b73c81da185d7231c8e43bcd",
+      "loss": 1.8,
+      "constraints": [
+        "ORACLE_MANIPULATION"
+      ],
+      "testGroup": "2024-attacks",
+      "priority": 6,
+      "description": "Oracle manipulation on Arbitrum"
+    },
+    {
+      "id": "blueberry-fdn-2024",
+      "name": "BlueberryFDN 2024",
+      "year": 2024,
+      "date": "2024-02-23",
+      "chain": "Ethereum",
+      "type": "logic_vulnerability",
+      "protocols": [
+        "BlueberryFDN"
+      ],
+      "transactionHash": "0xf0464b01d962f714eee9d4392b2494524d0e10ce3eb3723873afd1346b8b06e4",
+      "loss": 1.4,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2024-attacks",
+      "priority": 6,
+      "description": "Logic vulnerability on Ethereum"
+    },
+    {
+      "id": "shido-global-2024",
+      "name": "Shido Global 2024",
+      "year": 2024,
+      "date": "2024-02-15",
+      "chain": "BSC",
+      "type": "price_manipulation",
+      "protocols": [
+        "Shido"
+      ],
+      "transactionHash": "0x72f8dd2bcfe2c9fbf0d933678170417802ac8a0d8995ff9a56bfbabe3aa712d6",
+      "loss": 3.3,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2024-attacks",
+      "priority": 6,
+      "description": "Liquidity exploit on BSC"
+    },
+    {
+      "id": "euler-finance-2023",
+      "name": "Euler Finance 2023",
+      "year": 2023,
+      "date": "2023-03-13",
+      "chain": "Ethereum",
+      "type": "donation_attack",
+      "protocols": [
+        "Euler"
+      ],
+      "transactionHash": "0xc310a0affe2169d1f6feec1c63dbc7f7c62a887fa48795d327d4d2da2d6b111d",
+      "loss": 200,
+      "constraints": [
+        "LENDING_EXCESSIVE_BORROW"
+      ],
+      "testGroup": "2023-attacks",
+      "priority": 10,
+      "description": "Donation-based inflation + self-liquidation"
+    },
+    {
+      "id": "kyberswap-2023",
+      "name": "KyberSwap 2023",
+      "year": 2023,
+      "date": "2023-11-22",
+      "chain": "Ethereum",
+      "type": "price_manipulation",
+      "protocols": [
+        "KyberSwap"
+      ],
+      "transactionHash": "0x485e08dc2b6a4b3aeadcb89c3d18a37666dc7d9424961a2091d6b3696792f0f3",
+      "loss": 48,
+      "constraints": [
+        "KYBERSWAP_TICK_MANIPULATION"
+      ],
+      "testGroup": "2023-attacks",
+      "priority": 9,
+      "description": "Concentrated liquidity tick manipulation"
+    },
+    {
+      "id": "curve-finance-2023",
+      "name": "Curve Finance 2023",
+      "year": 2023,
+      "date": "2023-07-30",
+      "chain": "Ethereum",
+      "type": "reentrancy",
+      "protocols": [
+        "Curve"
+      ],
+      "transactionHash": "0xa84aa065ce61dbb1eb50ab6ae67fc31a9da50dd2c74eefd561661bfce2f1620c",
+      "loss": 41,
+      "constraints": [
+        "LENDING_EXCESSIVE_BORROW"
+      ],
+      "testGroup": "2023-attacks",
+      "priority": 9,
+      "description": "Vyper compiler bug reentrancy"
+    },
+    {
+      "id": "platypus-finance-2023",
+      "name": "Platypus Finance 2023",
+      "year": 2023,
+      "date": "2023-02-16",
+      "chain": "Avalanche",
+      "type": "flash_loan",
+      "protocols": [
+        "Platypus"
+      ],
+      "transactionHash": "0x1266a937c2ccd970e5d7929021eed3ec593a95c68a99b4920c2efa226679b430",
+      "loss": 8.5,
+      "constraints": [
+        "PLATYPUS_SOLVENCY_CHECK"
+      ],
+      "testGroup": "2023-attacks",
+      "priority": 7,
+      "description": "Flash loan + coverage ratio gaming"
+    },
+    {
+      "id": "hundred-finance-2023",
+      "name": "Hundred Finance 2023",
+      "year": 2023,
+      "date": "2023-04-15",
+      "chain": "Optimism",
+      "type": "price_manipulation",
+      "protocols": [
+        "Hundred"
+      ],
+      "transactionHash": "0x15096dc6a59cff26e0bd22eaf7e3a60125dcec687580383488b7b5dd2aceea93",
+      "loss": 7,
+      "constraints": [
+        "COMPOUND_FORK_EMPTY_MARKET",
+        "EMPTY_MARKET_DONATION_ATTACK",
+        "HUNDRED_FINANCE_ROUNDING"
+      ],
+      "testGroup": "2023-attacks",
+      "priority": 7,
+      "description": "Donation-based exchange rate manipulation"
+    },
+    {
+      "id": "dforce-2023",
+      "name": "dForce 2023",
+      "year": 2023,
+      "date": "2023-02-10",
+      "chain": "Arbitrum",
+      "type": "reentrancy",
+      "protocols": [
+        "dForce"
+      ],
+      "transactionHash": "0x5db5c2400ab56db697b3cc9aa02a05deab658e1438ce2f8692ca009cc45171dd",
+      "loss": 3.65,
+      "constraints": [
+        "DFORCE_READ_ONLY_REENTRANCY"
+      ],
+      "testGroup": "2023-attacks",
+      "priority": 6,
+      "description": "Read-only reentrancy oracle manipulation"
+    },
+    {
+      "id": "paraspace-nft-2023",
+      "name": "ParaSpace NFT 2023",
+      "year": 2023,
+      "date": "2023-03-17",
+      "chain": "Ethereum",
+      "type": "price_manipulation",
+      "protocols": [
+        "ParaSpace"
+      ],
+      "transactionHash": "0xe3f0d14cfb6076cabdc9057001c3fafe28767a192e88005bc37bd7d385a1116a",
+      "loss": 0.293,
+      "constraints": [
+        "UNIFIED_PRICE_MANIPULATION"
+      ],
+      "testGroup": "2023-attacks",
+      "priority": 5,
+      "description": "NFT Collateral Manipulation (prevented)"
+    },
+    {
+      "id": "allbridge-2023",
+      "name": "Allbridge 2023",
+      "year": 2023,
+      "date": "2023-04-01",
+      "chain": "BSC",
+      "type": "bridge",
+      "protocols": [
+        "Allbridge"
+      ],
+      "transactionHash": "0x7ff1364c3b3b296b411965339ed956da5d17058f3164425ce800d64f1aef8210",
+      "loss": 0.573,
+      "constraints": [
+        "ALLBRIDGE_VALIDATION_BYPASS",
+        "ALLBRIDGE_PRICE_MANIPULATION",
+        "UNIFIED_FLASH_LOAN"
+      ],
+      "testGroup": "2023-attacks",
+      "priority": 6,
+      "description": "Flash loan + bridge pool price manipulation"
+    },
+    {
+      "id": "prisma-finance-2024",
+      "name": "Prisma Finance 2024",
+      "year": 2024,
+      "date": "2024-03-28",
+      "chain": "Ethereum",
+      "type": "reentrancy",
+      "protocols": [
+        "Prisma Finance"
+      ],
+      "transactionHash": "0x00c503b595946bccaea3d58025b5f9b3726177bbdc9674e634244135282116c7",
+      "loss": 11.6,
+      "constraints": [
+        "COLLATERAL_MANIPULATION"
+      ],
+      "testGroup": "2024-attacks",
+      "priority": 8,
+      "description": "Reentrancy attack via flash loan callback in MigrateTroveZap"
+    }
+  ]
+}

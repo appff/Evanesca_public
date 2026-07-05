@@ -1,0 +1,1 @@
+export const ABIProxy = [{"inputs":[{"internalType":"address","name":"beacon","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"stateMutability":"payable","type":"constructor"},{"stateMutability":"payable","type":"fallback"}]; 

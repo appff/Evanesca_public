@@ -1,0 +1,35 @@
+{
+  "archival": {
+    "maxAge": 7,
+    "excludePaths": [
+      "archive",
+      "archive-*",
+      "checkpoints",
+      ".git",
+      "node_modules",
+      "*.md"
+    ],
+    "compressJson": false,
+    "keepLatest": true,
+    "targetDirectories": [
+      "verification-results"
+    ],
+    "filePatterns": {
+      "alwaysKeep": [
+        "README.md",
+        "*.config.json",
+        "last-archive-summary.md"
+      ],
+      "priorityArchive": [
+        "*-report-*.json",
+        "*-results-*.json",
+        "test-*.json"
+      ]
+    },
+    "schedule": {
+      "enabled": false,
+      "cronPattern": "0 2 * * *",
+      "comment": "Run daily at 2 AM"
+    }
+  }
+}

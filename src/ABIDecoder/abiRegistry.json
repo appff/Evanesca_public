@@ -1,0 +1,282 @@
+{
+  "ERC20": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "ERC20Derivative": {
+    "file": "ERC20DerivativeABI",
+    "exports": ["ABIERC20Derivative"]
+  },
+  "Compound": {
+    "file": "CompoundABI",
+    "exports": ["ABICompound"]
+  },
+  "Harvest": {
+    "file": "HarvestABI",
+    "exports": ["ABIHarvestPool"]
+  },
+  "Uniswap": {
+    "file": "UniswapABI",
+    "exports": ["ABIUniPair"]
+  },
+  "UniswapV3": {
+    "file": "UniswapV3ABI",
+    "exports": ["ABIUniV3Pool"]
+  },
+  "UniswapV3Router": {
+    "file": "UniswapV3ABI",
+    "exports": ["ABIUniV3Router"]
+  },
+  "CurveFi": {
+    "file": "CurveABI",
+    "exports": ["ABICurvePool"]
+  },
+  "CurvePool": {
+    "file": "CurveABI",
+    "exports": ["ABICurvePool"]
+  },
+  "CurveV2Pool": {
+    "file": "CurveV2PoolABI",
+    "exports": ["ABICurveV2Pool"]
+  },
+  "Sushiswap": {
+    "file": "UniswapABI",
+    "exports": ["ABIUniPair"]
+  },
+  "PancakeSwap": {
+    "file": "UniswapABI",
+    "exports": ["ABIUniPair"]
+  },
+  "bZx": {
+    "file": "bZxABI",
+    "exports": ["ABIbZx"]
+  },
+  "dYdX": {
+    "file": "dYdXABI",
+    "exports": ["ABIdYdX"]
+  },
+  "RikkeiFinance": {
+    "file": "RikkeiFinanceABI",
+    "exports": ["ABIRikkeiFinance"]
+  },
+  "EGDFinance": {
+    "file": "EGDFinanceABI",
+    "exports": ["ABIEGDFinance"]
+  },
+  "Crosswise": {
+    "file": "CrosswiseABI",
+    "exports": ["ABICrosswise"]
+  },
+  "CrosswiseMasterchef": {
+    "file": "CrosswiseABI",
+    "exports": ["ABICrosswiseMasterchef"]
+  },
+  "FortressLoans": {
+    "file": "FortressLoansABI",
+    "exports": ["ABIFortressLoans"]
+  },
+  "QubitBridge": {
+    "file": "QubitBridgeABI",
+    "exports": ["ABIQubitBridge"]
+  },
+  "MeterBridge": {
+    "file": "MeterBridgeABI",
+    "exports": ["MeterBridgeABI"]
+  },
+  "Euler": {
+    "file": "EulerABI",
+    "exports": ["ABIEuler"]
+  },
+  "KyberSwap": {
+    "file": "KyberSwapABI",
+    "exports": ["ABIKyberSwap"]
+  },
+  "Balancer": {
+    "file": "BalancerABI",
+    "exports": ["ABIBalancer"]
+  },
+  "Warp Finance": {
+    "file": "WarpFinanceABI",
+    "exports": ["ABIWarpFinance"]
+  },
+  "Warp Finance_LP": {
+    "file": "WarpFinanceABI",
+    "exports": ["ABIWarpFinance"]
+  },
+  "PlatypusPool": {
+    "file": "PlatypusABI",
+    "exports": ["ABIPlatypusPool"]
+  },
+  "MasterPlatypus": {
+    "file": "PlatypusABI",
+    "exports": ["ABIMasterPlatypus"]
+  },
+  "PlatypusTreasure": {
+    "file": "PlatypusABI",
+    "exports": ["ABIPlatypusTreasure"]
+  },
+  "PlatypusAsset": {
+    "file": "PlatypusABI",
+    "exports": ["ABIPlatypusAsset"]
+  },
+  "Allbridge": {
+    "file": "AllbridgeABI",
+    "exports": ["ABIAllbridge"]
+  },
+  "AaveV3Pool": {
+    "file": "AaveV3ABI",
+    "exports": ["ABIAaveV3Pool"]
+  },
+  "WombatExchange": {
+    "file": "WombatExchangeABI",
+    "exports": ["ABIWombatExchange"]
+  },
+  "UniPool": {
+    "file": "UniswapABI",
+    "exports": ["ABIUniPool"]
+  },
+  "Akropolis": {
+    "file": "AkropolisABI",
+    "exports": ["ABIAkropolis"]
+  },
+  "CreamFinance": {
+    "file": "CreamFiABI",
+    "exports": ["ABICreamFi"]
+  },
+  "KyberNetwork": {
+    "file": "KyberABI",
+    "exports": ["ABIKyber"]
+  },
+  "Synthetix": {
+    "file": "SynthetixABI",
+    "exports": ["ABISynthetix"]
+  },
+  "RariFinance": {
+    "file": "CompoundABI",
+    "exports": ["ABICompound"]
+  },
+  "WETH": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "AaveLendingPool": {
+    "file": "CompoundABI",
+    "exports": ["ABICompound"]
+  },
+  "UniswapV3Pool": {
+    "file": "UniswapV3ABI",
+    "exports": ["ABIUniV3Pool"]
+  },
+  "RadiantHelper": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "WooPPV2": {
+    "file": "WooFiABI",
+    "exports": ["ABIWooPPV2"]
+  },
+  "WooRouter": {
+    "file": "WooFiABI",
+    "exports": ["ABIWooRouter"]
+  },
+  "WooFi": {
+    "file": "WooFiABI",
+    "exports": ["ABIWooPPV2"]
+  },
+  "ConcentricLending": {
+    "file": "ConcentricABI",
+    "exports": ["ABIConcentricLending"]
+  },
+  "Concentric": {
+    "file": "ConcentricABI",
+    "exports": ["ABIConcentric"]
+  },
+  "ConcentricFinance": {
+    "file": "ConcentricABI",
+    "exports": ["ABIConcentric"]
+  },
+  "GammaHypervisor": {
+    "file": "GammaABI",
+    "exports": ["ABIGammaHypervisor"]
+  },
+  "USDC-Arbitrum": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "WETH-Arbitrum": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "UniswapV3-Arbitrum": {
+    "file": "UniswapV3ABI",
+    "exports": ["ABIUniV3Pool"]
+  },
+  "RadiantLendingPoolCore": {
+    "file": "CompoundABI",
+    "exports": ["ABICompound"]
+  },
+  "RadiantLockZap": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "PassportMeterBNB": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "SolarSwapLP": {
+    "file": "UniswapABI",
+    "exports": ["ABIUniPair"]
+  },
+  "SolarSwapRouter": {
+    "file": "UniswapABI",
+    "exports": ["ABIUniPair"]
+  },
+  "MultiChainETH": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "ArbitrumUSDC": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "ArbitrumWETH": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "dForce": {
+    "file": "CompoundABI",
+    "exports": ["ABICompound"]
+  },
+  "KyberElastic": {
+    "file": "KyberSwapABI",
+    "exports": ["ABIKyberSwap"]
+  },
+  "wstETH-Arbitrum": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "HundredFinance": {
+    "file": "CompoundABI",
+    "exports": ["ABICompound"]
+  },
+  "Wombat": {
+    "file": "WombatExchangeABI",
+    "exports": ["ABIWombatExchange"]
+  },
+  "BUSD-BSC": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "USDT-BSC": {
+    "file": "ERC20ABI",
+    "exports": ["ABIERC20"]
+  },
+  "PancakeSwapLP": {
+    "file": "UniswapABI",
+    "exports": ["ABIUniPair"]
+  },
+  "Platypus": {
+    "file": "PlatypusABI",
+    "exports": ["ABIPlatypusPool"]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "description": "Index file for split ABI mappings to reduce token usage",
+  "chains": {
+    "ethereum": {
+      "chainId": 1,
+      "files": [
+        "ethereum/tokens.json",
+        "ethereum/dex.json",
+        "ethereum/lending.json",
+        "ethereum/bridges.json",
+        "ethereum/specialized.json",
+        "ethereum/other.json"
+      ]
+    },
+    "bsc": {
+      "chainId": 56,
+      "files": [
+        "bsc/tokens.json",
+        "bsc/dex.json",
+        "bsc/other.json"
+      ]
+    },
+    "arbitrum": {
+      "chainId": 42161,
+      "files": [
+        "arbitrum/lending.json",
+        "arbitrum/dex.json",
+        "arbitrum/tokens.json"
+      ]
+    },
+    "optimism": {
+      "chainId": 10,
+      "files": [
+        "optimism/lending.json",
+        "optimism/tokens.json"
+      ]
+    },
+    "avalanche": {
+      "chainId": 43114,
+      "files": [
+        "avalanche/specialized.json",
+        "avalanche/tokens.json"
+      ]
+    },
+    "moonriver": {
+      "chainId": 1285,
+      "files": [
+        "moonriver/dex.json",
+        "moonriver/tokens.json"
+      ]
+    }
+  },
+  "services": {
+    "ERC20": "ethereum/tokens.json",
+    "Compound": "ethereum/lending.json",
+    "Uniswap": "ethereum/dex.json",
+    "UniswapV3": "ethereum/dex.json",
+    "CurveFi": "ethereum/dex.json",
+    "AaveV3Pool": "ethereum/lending.json",
+    "Allbridge": "ethereum/bridges.json",
+    "PlatypusPool": "ethereum/specialized.json",
+    "MasterPlatypus": "ethereum/specialized.json",
+    "PlatypusTreasure": "ethereum/specialized.json",
+    "PlatypusAsset": "ethereum/specialized.json",
+    "WombatExchange": "bsc/dex.json",
+    "PancakeSwap": "bsc/dex.json",
+    "PancakeSwapLP": "bsc/dex.json"
+  },
+  "stats": {
+    "total_entries": 131,
+    "ethereum_entries": 73,
+    "bsc_entries": 33,
+    "arbitrum_entries": 5,
+    "optimism_entries": 0,
+    "avalanche_entries": 16,
+    "moonriver_entries": 1,
+    "last_updated": "2025-08-22"
+  }
+}

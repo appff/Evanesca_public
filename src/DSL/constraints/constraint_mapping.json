@@ -1,0 +1,42 @@
+{
+  "mappings": {
+    "comment": "This file maps service-specific constraints to attack detection generalizations",
+    
+    "service_to_attack_detection": {
+      "FORTRESS_LOANS_BSC": ["LENDING_COLLATERALIZATION"],
+      "WOOFI_SPMM_MANIPULATION": ["PRICE_MANIPULATION"],
+      "CONCENTRIC_BURN_ATTACK": ["ORACLE_MANIPULATION"],
+      "DFORCE_READ_ONLY_REENTRANCY": ["READ_ONLY_REENTRANCY"],
+      "PLATYPUS_SOLVENCY_CHECK": ["LENDING_COLLATERALIZATION"],
+      "HUNDRED_FINANCE_ROUNDING": ["EMPTY_MARKET_ATTACK"],
+      "ALLBRIDGE_VALIDATION_BYPASS": ["BRIDGE_INTEGRITY_VIOLATION"],
+      "ALLBRIDGE_PRICE_MANIPULATION": ["PRICE_MANIPULATION", "FLASH_LOAN_ATTACK"],
+      "B1_ABNORMAL_MINTING": ["BRIDGE_INTEGRITY_VIOLATION"],
+      "BRIDGE_ZERO_DEPOSIT": ["BRIDGE_INTEGRITY_VIOLATION"],
+      "COMPOUND_FORK_EMPTY_MARKET": ["EMPTY_MARKET_ATTACK"],
+      "EMPTY_MARKET_DONATION_ATTACK": ["EMPTY_MARKET_ATTACK"],
+      "KYBERSWAP_TICK_MANIPULATION": ["CONCENTRATED_LIQUIDITY_ATTACK"]
+    },
+    
+    "preserved_mappings": {
+      "comment": "These constraints map directly to attack detection versions",
+      "DEX_K_INVARIANT": "DEX_K_INVARIANT",
+      "UNIFIED_PRICE_MANIPULATION": "PRICE_MANIPULATION",
+      "COLLATERAL_MANIPULATION": "REENTRANCY_PATTERN",
+      "LENDING_EXCESSIVE_BORROW": "LENDING_COLLATERALIZATION",
+      "UNIFIED_FLASH_LOAN": "FLASH_LOAN_ATTACK",
+      "EXCHANGE_RATE_MANIPULATION": "EXCHANGE_RATE_MANIPULATION",
+      "ORACLE_MANIPULATION": "ORACLE_MANIPULATION",
+      "CONCENTRATED_LIQUIDITY_MANIPULATION": "CONCENTRATED_LIQUIDITY_ATTACK",
+      "UNIFIED_CROSS_CHAIN": "BRIDGE_INTEGRITY_VIOLATION"
+    },
+    
+    "coverage_analysis": {
+      "total_original_constraints": 25,
+      "total_attack_detection_constraints": 11,
+      "attacks_covered": 40,
+      "coverage_percentage": 100,
+      "reduction_ratio": 0.56
+    }
+  }
+}

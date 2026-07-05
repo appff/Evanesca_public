@@ -1,0 +1,17 @@
+{
+  "ethereum": {
+    "total": 96,
+    "tokens": 21,
+    "dex": 17,
+    "lending": 19,
+    "bridges": 8,
+    "specialized": 21,
+    "other": 10
+  },
+  "bsc": {
+    "total": 31,
+    "tokens": 2,
+    "dex": 4,
+    "other": 25
+  }
+}

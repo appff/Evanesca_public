@@ -1,0 +1,151 @@
+[
+  {
+    "Service": "PrismaFinance",
+    "ServiceType": "Lending",
+    "Address": [
+      "0x24179b935b9d26b7e3c1b57ca08e89f5d7375bc1",
+      "0x1CC79f3F47BfC060b6F761FcD1afC6D399a968B6",
+      "0x70b66E20766b775B2E9cE5B718bbD285Af59b7E1",
+      "0x4591DBfF62656E7859Afe5e45f6f47D3669fBB28"
+    ],
+    "Events": [
+      "FlashLoan",
+      "Withdraw",
+      "Callback",
+      "Deposit",
+      "Borrow",
+      "Repay",
+      "TroveMigrated",
+      "TroveUpdated"
+    ],
+    "FlashLoan": {
+      "eventName": "FlashLoan",
+      "initiator": 0,
+      "token": 1,
+      "amount": 2,
+      "fee": 3
+    },
+    "Withdraw": {
+      "eventName": "Withdraw",
+      "user": 0,
+      "amount": 1
+    },
+    "Callback": {
+      "eventName": "Callback",
+      "sender": 0,
+      "data": 1
+    },
+    "Borrow": {
+      "eventName": "Borrow",
+      "borrower": 0,
+      "amount": 1,
+      "collateral": 2
+    },
+    "TroveMigration": {
+      "eventName": "TroveMigrated",
+      "from": 0,
+      "to": 1,
+      "debt": 2,
+      "collateral": 3
+    },
+    "ABIHash": ""
+  },
+  {
+    "Service": "ParaSpace",
+    "ServiceType": "NFTLending",
+    "Address": [
+      "0x638a98BBB92a7582d07C52ff407D49664DC8b3Ee",
+      "0x3bf83DEFa89D1Fa3a7FAfF3534Af2AAa67614CEB",
+      "0xA06c2B67e7435ce3056b8D2700E82Be1Da359a4c"
+    ],
+    "Events": [
+      "DepositNFT",
+      "WithdrawNFT",
+      "Borrow",
+      "Repay",
+      "Liquidate",
+      "Supply",
+      "CollateralConfigurationChanged"
+    ],
+    "DepositNFT": {
+      "eventName": "DepositNFT",
+      "user": 0,
+      "tokenId": 1,
+      "collection": 2
+    },
+    "WithdrawNFT": {
+      "eventName": "WithdrawNFT",
+      "user": 0,
+      "tokenId": 1,
+      "collection": 2
+    },
+    "BorrowAgainstNFT": {
+      "eventName": "Borrow",
+      "borrower": 0,
+      "amount": 1,
+      "collateralId": 2,
+      "reserve": 3
+    },
+    "LiquidateNFT": {
+      "eventName": "Liquidate",
+      "liquidator": 0,
+      "borrower": 1,
+      "tokenId": 2,
+      "debtAmount": 3,
+      "collateralAmount": 4
+    },
+    "CollateralConfig": {
+      "eventName": "CollateralConfigurationChanged",
+      "asset": 0,
+      "ltv": 1,
+      "liquidationThreshold": 2,
+      "liquidationBonus": 3
+    },
+    "ABIHash": ""
+  },
+  {
+    "Service": "FortressLoans",
+    "ServiceType": "Lending",
+    "Address": [
+      "0x67340Bd16ee5649A37015138B3393Eb5ad17c195",
+      "0x1E71AEE6081f62053123140aacC7a06021D77348",
+      "0xA3D0f3Ac802bd988209F9Ec3DD0B6775eF55406F"
+    ],
+    "Events": [
+      "FlashLoan",
+      "Borrow",
+      "Supply",
+      "Withdraw",
+      "Liquidate",
+      "Mint",
+      "Redeem"
+    ],
+    "FlashLoan": {
+      "eventName": "FlashLoan",
+      "receiver": 0,
+      "token": 1,
+      "amount": 2,
+      "fee": 3
+    },
+    "Borrow": {
+      "eventName": "Borrow",
+      "borrower": 0,
+      "borrowAmount": 1,
+      "accountBorrows": 2,
+      "totalBorrows": 3
+    },
+    "Supply": {
+      "eventName": "Mint",
+      "minter": 0,
+      "mintAmount": 1,
+      "mintTokens": 2
+    },
+    "Withdraw": {
+      "eventName": "Redeem",
+      "redeemer": 0,
+      "redeemAmount": 1,
+      "redeemTokens": 2
+    },
+    "ABIHash": ""
+  }
+]

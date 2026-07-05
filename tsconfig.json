@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "types": ["node", "mocha", "chai"],
+    "paths": {
+      "*": ["node_modules/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "lib",
+    "large-scale-ingest",
+    "large-scale-ingest-*",
+    "large-scale-results",
+    "src/test/**/*",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts"
+  ],
+  "ts-node": {
+    "files": true,
+    "transpileOnly": true,
+    "experimentalResolver": true
+  }
+}

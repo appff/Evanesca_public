@@ -1,0 +1,78 @@
+./src/Evanesca/evaluation/largescale/data/*
+.vscode/
+node_modules/
+./benchmark-results
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+
+# Never commit API keys
+*.key
+*.pem
+*api-key*
+
+# Cache directories (auto-generated)
+cache/
+src/cache/
+*.cache
+.cache/verification-results/reports/*.json
+
+# Large Scale Ingest Data (Prevent high CPU/Memory usage by file watchers)
+large-scale-ingest/
+large-scale-ingest-*/
+large-scale-results/
+ingest-*.log
+*.jsonl
+*.parquet
+*.db
+*.sqlite
+
+# Allow committing small, reproducible experiment artifacts where appropriate.
+!docs/experiments/fp_validation_wacco/option4_baseline_10k/*.jsonl
+
+# Local-only experiment scratch
+fp_audit/
+test-ingest/
+test-results*/
+input-sample.txt
+
+# Local PDF rendering scratch (generated during layout inspection)
+docs/papers/evanesca/
+docs/papers/evanesca/.render*/
+docs/papers/evanesca/.render_fig*/
+docs/papers/evanesca/Evanesca_comment.pdf
+docs/papers/evanesca/evanesca_kor.md
+texput.log
+
+# Local agent/tool state
+.evanesca-public-export
+.claude/
+.playwright-mcp/
+src/.claude/
+
+# Private correspondence / draft replies
+professor_*.md
+professor_email.md
+professor_reply_draft.md
+review.md
+
+# Internal artifact reserves
+artifacts/defect-hashes-internal/
+
+# Wiki raw input files (user-supplied, local only)
+wiki/raw/
+wiki/.obsidian/
+wiki/무제.md

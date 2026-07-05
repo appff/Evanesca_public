@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Evanesca: Semantic Financial Graphs for DeFi Value-Extraction Analysis"
+message: "If you use Evanesca in research or tooling, please cite the project and the technical report."
+type: software
+authors:
+  - name: "Evanesca Project"
+repository-code: "https://github.com/appff/Evanesca"
+license: "MIT"
+version: "0.1.0-open-source-draft"
+date-released: "2026-07-06"
+abstract: "Evanesca is an open-source framework for reconstructing DeFi value-extraction playbooks as Semantic Financial Graphs and auditing them with transparent financial constraints."
+

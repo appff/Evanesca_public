@@ -1,0 +1,19 @@
+{
+  "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506": "SolarSwapRouter",
+  "0x275f5ad03be0fa221b4c6649b8aee09a42d9412a": "KyberSwap",
+  "0x5979d7b546e38e414f7e9822514be443a4800529": "Uniswap",
+  "0x5e8422345238f34275888049021821e8e08caa1f": "KyberSwap",
+  "0x5fab0d9327f0728bcfaf60f2e1a9e2b8ba07f9c9": "CurveV2Pool",
+  "0x93fc0acf77edd68e611f8a776c9995f350f84274": "KyberSwap",
+  "0x9848482da3ee3076165ce6497eda906e66bb85c5": "CurveV2Pool",
+  "0xaf2acf3d4ab78e4c702256d214a3189a874cdc13": "KyberSwap",
+  "0xb131f4a55907b10d1f0a50d8ab8fa09ec342cd74": "KyberSwap",
+  "0xb1da0c301f922f3aec4eb63b40bbac823fb328d5": "CurveV2Pool",
+  "0xba12222222228d8ba445958a75a0704d566bf2c8": "Balancer",
+  "0xc6962004f452be9203591991d15f6b388e09e8d0": "UniswapV3Pool",
+  "0xd0a167d1973ca8f76723c6fea1e6f608dbc1d464": "PancakeSwap",
+  "0xe222fbe074a436145b255442d919e4e3a6c6a480": "KyberSwap",
+  "0xfbc887823dd414edf76c5da88ffcd9eef2ba87cc": "KyberSwap",
+  "0xfd436a2920b6acd53d184ff88a42ef89eb0e9fb1": "CurveV2Pool",
+  "0xfd7b111aa83b9b6f547e617c7601efd997f64703": "KyberSwap"
+}

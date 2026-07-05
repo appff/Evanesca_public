@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "0.1",
+  "description": "Public artifact manifest for the Evanesca open-source repository export.",
+  "artifacts": [
+    {
+      "id": "defect-hashes-public-v0.1",
+      "path": "artifacts/defect-hashes-public",
+      "releaseReady": false,
+      "status": "provenance-review-required",
+      "description": "Public-looking implementation-defect transaction hash subset.",
+      "expectedCounts": {
+        "total": 219,
+        "reward_distribution_TEND_WING": 207,
+        "yield_bearing_CreamY_yyCRV": 12
+      },
+      "files": [
+        {
+          "path": "artifacts/defect-hashes-public/master.json",
+          "kind": "defect_master",
+          "expectedTotal": 219
+        },
+        {
+          "path": "artifacts/defect-hashes-public/audit_report.json",
+          "kind": "audit_report",
+          "expectedTotal": 219
+        },
+        {
+          "path": "artifacts/defect-hashes-public/all_defects.csv",
+          "kind": "csv_with_header",
+          "expectedRows": 219
+        },
+        {
+          "path": "artifacts/defect-hashes-public/reward_distribution_TEND_WING.json",
+          "kind": "hash_list",
+          "expectedRows": 207
+        },
+        {
+          "path": "artifacts/defect-hashes-public/reward_distribution_TEND_WING.csv",
+          "kind": "csv_with_header",
+          "expectedRows": 207
+        },
+        {
+          "path": "artifacts/defect-hashes-public/yield_bearing_CreamY_yyCRV.json",
+          "kind": "hash_list",
+          "expectedRows": 12
+        },
+        {
+          "path": "artifacts/defect-hashes-public/yield_bearing_CreamY_yyCRV.csv",
+          "kind": "csv_with_header",
+          "expectedRows": 12
+        }
+      ]
+    },
+    {
+      "id": "non-baseline-hashes-v0.1",
+      "path": "artifacts/non-baseline-hashes",
+      "releaseReady": false,
+      "status": "provenance-review-required",
+      "description": "Recovered non-baseline transaction hash bundle; broader than the headline implementation-defect subset.",
+      "expectedCounts": {
+        "totalUnique": 1386,
+        "TEND_token": 301,
+        "WING_token": 8,
+        "Pendle_via_attacker": 139,
+        "CreamY_pool": 809,
+        "dYdX_flashloan_sample": 129
+      },
+      "files": [
+        {
+          "path": "artifacts/non-baseline-hashes/master.json",
+          "kind": "non_baseline_master",
+          "expectedTotal": 1386
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/all_non_baseline.csv",
+          "kind": "csv_with_header",
+          "expectedRows": 1386
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/TEND_token.json",
+          "kind": "pm_hash_list",
+          "expectedRows": 301
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/TEND_token.csv",
+          "kind": "csv_with_header",
+          "expectedRows": 301
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/WING_token.json",
+          "kind": "pm_hash_list",
+          "expectedRows": 8
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/WING_token.csv",
+          "kind": "csv_with_header",
+          "expectedRows": 8
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/Pendle_via_attacker.json",
+          "kind": "pm_hash_list",
+          "expectedRows": 139
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/Pendle_via_attacker.csv",
+          "kind": "csv_with_header",
+          "expectedRows": 139
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/CreamY_pool.json",
+          "kind": "pm_hash_list",
+          "expectedRows": 809
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/CreamY_pool.csv",
+          "kind": "csv_with_header",
+          "expectedRows": 809
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/dYdX_flashloan_sample.json",
+          "kind": "pm_hash_list",
+          "expectedRows": 129
+        },
+        {
+          "path": "artifacts/non-baseline-hashes/dYdX_flashloan_sample.csv",
+          "kind": "csv_with_header",
+          "expectedRows": 129
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "outDir": "lib",
+    "rootDir": "../../",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "target": "ES2020",
+    "moduleResolution": "node",
+    "types": ["node", "mocha", "chai"],
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strict": false,
+    "noImplicitReturns": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitThis": false,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "../../**/*.ts"
+  ],
+  "exclude": [
+    "../../node_modules",
+    "../../packages/**/*",
+    "../../Evaluation/**/*",
+    "../../CashflowGraph/**/*.ts",
+    "../../formal/test/**/*"
+  ]
+}

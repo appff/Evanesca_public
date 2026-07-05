@@ -1,0 +1,77 @@
+[ {"Service":"Compound", "PoolList": [
+    {"Address":"0xC11b1268C1A384e55C48c2391d8d480264A3A7F4", "NormalizedSymbol":"WBTC"},
+    {"Address":"0x39aa39c021dfbae8fac545936693ac917d5e7563", "NormalizedSymbol":"USDC"}, 
+    {"Address":"0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5", "NormalizedSymbol":"ETH"}, 
+    {"Address":"0xf650C3d88D12dB855b8bf7D11Be6C55A4e07dCC9", "NormalizedSymbol":"USDT"}, 
+    {"Address":"0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643", "NormalizedSymbol":"DAI"},
+    {"Address":"0xFAce851a4921ce59e912d19329929CE6da6EB0c7", "NormalizedSymbol":"LINK"},
+    {"Address":"0xC462fF1063172BAC6f6823A17ED181a0586f0FC8", "NormalizedSymbol":"UNKNOWN"}]
+  },
+  {"Service":"Aave", "PoolList": [
+    {"Address":"0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9", "NormalizedSymbol":"ETH"},
+    {"Address":"0x9bA00D6856a4eDF4665BcA2C2309936572473B7E", "NormalizedSymbol":"USDC"},
+    {"Address":"0x028171bca77440897b824ca71d1c56cac55b68a3", "NormalizedSymbol":"DAI"},
+    {"Address":"0x3a2d44e354f2d88EF6DA7A5A4646fd70182A7F55", "NormalizedSymbol":"UNKNOWN"},
+    {"Address":"0x0dF5dfd95966753f01cb80E76dc20EA958238C46", "NormalizedSymbol":"UNKNOWN"}]
+  }, 
+  {"Service":"Harvest", "PoolList": [
+    {"Address":"0x053c80ea73dc6941f518a68e2fc52ac45bde7c9c", "NormalizedSymbol":"USDT"}, {"Address":"0xf0358e8c3CD5Fa238a29301d0bEa3D63A17bEdBE", "NormalizedSymbol":"USDC"}]
+  },
+  {"Service":"CreamFinance", "PoolList": [
+    {"Address":"0x697256caa3ccafd62bb6d3aa1c7c5671786a5fd9", "NormalizedSymbol":"crLINK"}, {"Address":"0x17107f40d70f4470d20cb3f138a052cae8ebd4be", "NormalizedSymbol":"crRENBTC"},
+    {"Address":"0x98e329eb5aae2125af273102f3440de19094b77c", "NormalizedSymbol":"crSWAP"},
+    {"Address":"0xe89a6d0509faf730bd707bf868d9a2a744a363c7", "NormalizedSymbol":"crUNI"},
+    {"Address":"0x44fbebd2f576670a6c33f6fc0b00aa8c5753b322", "NormalizedSymbol":"crUSDC"},
+    {"Address":"0x797aab1ce7c01eb727ab980762ba88e7133d2157", "NormalizedSymbol":"crUSDT"},
+    {"Address":"0x9baf8a5236d44ac410c0186fe39178d5aad0bb87", "NormalizedSymbol":"crYCRV"},
+    {"Address":"0xcbae0a83f4f9926997c8339545fb8ee32edc6b76", "NormalizedSymbol":"crYFI"},
+    {"Address":"0xce4fe9b4b8ff61949dcfeb7e03bc9faca59d2eb3", "NormalizedSymbol":"crBAL"},{"Address":"0x8b950f43fcac4931d408f1fcda55c6cb6cbf3096", "NormalizedSymbol":"crBBADGER"},{"Address":"0x19d1666f543d42ef17f66e376944a22aea1a8e46", "NormalizedSymbol":"crCOMP"},
+    {"Address":"0x892b14321a4fcba80669ae30bd0cd99a7ecf6ac0", "NormalizedSymbol":"crCREAM"},
+    {"Address":"0xc7fd8dcee4697ceef5a2fd4608a7bd6a94c77480", "NormalizedSymbol":"crCRV"},
+    {"Address":"0xd06527d5e56a3495252a528c4987003b712860ee", "NormalizedSymbol":"crETH"},
+    {"Address":"0x8b86e0598616a8d4f1fdae8b59e55fb5bc33d0d6", "NormalizedSymbol":"crLEND"}]
+  },
+  {"Service":"RikkeiFinance", "PoolList": [
+    {"Address":"0x157822ac5fa0efe98daa4b0a55450f4a182c10ca", "NormalizedSymbol":"BUSD"},
+    {"Address":"0x4f3e801bd57dc3d641e72f2774280b21d31f64e4", "NormalizedSymbol":"RIKKEI"}]
+  },
+  {"Service":"dForce", "PoolList": [
+    {"Address":"0x098ef55011b6b8c99845128114a9d9159777d697", "NormalizedSymbol":"UNKNOWN"},
+    {"Address":"0x641441c631e2f909700d2f41fd87f0aa6a6b4edb", "NormalizedSymbol":"UNKNOWN"},
+    {"Address":"0xdbcd16e622c95acb2650b38ec799f76bfc557a0b", "NormalizedSymbol":"UNKNOWN"},
+    {"Address":"0x2ce498b79c499c6bb64934042eba487bd31f75ea", "NormalizedSymbol":"UNKNOWN"},
+    {"Address":"0xc462ff1063172bac6f6823a17ed181a0586f0fc8", "NormalizedSymbol":"UNKNOWN"},
+    {"Address":"0x489ee077994b6658eafa855c308275ead8097c4a", "NormalizedSymbol":"UNKNOWN"},
+    {"Address":"0x6eb2dc694eb516b16dc9fbc678c60052bbdd7d80", "NormalizedSymbol":"UNKNOWN"},
+    {"Address":"0x7f90122bf0700f9e7e1f688fe926940e8839f353", "NormalizedSymbol":"UNKNOWN"}]
+  },
+  {"Service":"EGDFinance", "PoolList": [
+    {"Address":"0x34bd6dba456bc31c2b3393e499fa10bed32a9370", "NormalizedSymbol":"EGD"}]
+  },
+  {"Service":"PancakeSwap", "PoolList": [
+    {"Address":"0xa361433e409adac1f87cdf133127585f8a93c67d", "NormalizedSymbol":"EGD/USDT"},
+    {"Address":"0x16b9a82891338f9ba80e2d6970fdda79d1eb0dae", "NormalizedSymbol":"WBNB/USDT"},
+    {"Address":"0x10ED43C718714eb63d5aA57B78B54704E256024E", "NormalizedSymbol":"ROUTER"},
+    {"Address":"0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73", "NormalizedSymbol":"FACTORY"}]
+  },
+  {"Service":"RariFinance", "PoolList": [
+    {"Address":"0x26267e41ceca7c8e0f143554af707336f27fa051", "NormalizedSymbol":"USDC"},
+    {"Address":"0x32075bad9050d4767018084f0cb87b3182d36c45", "NormalizedSymbol":"ETH"},
+    {"Address":"0x3f2d1bc6d02522dbcdb216b2e75edddafe04b16f", "NormalizedSymbol":"DAI"},
+    {"Address":"0x8922c1147e141c055fddfc0ed5a119f3378c8ef8", "NormalizedSymbol":"WETH"},
+    {"Address":"0xe097783483d1b7527152ef8b150b99b9b2700c8d", "NormalizedSymbol":"FEI"},
+    {"Address":"0xebe0d1cb6a0b8569929e062d67bfbc07608f0a47", "NormalizedSymbol":"USDT"},
+    {"Address":"0xfea425f0baadf191546cf6f2dbf72357d631ae46", "NormalizedSymbol":"TRIBE"}]
+  },
+  {"Service":"FortressLoans", "PoolList": [
+    {"Address":"0x554530ecDE5A4Ba780682F479BC9F64F4bBFf3a1", "NormalizedSymbol":"fUSDT"},
+    {"Address":"0x8BB0d002bAc7F1845cB2F14fe3D6Aae1D1601e29", "NormalizedSymbol":"fBUSD"},
+    {"Address":"0x4437743ac02957068995c48e08465e0ee1769fbe", "NormalizedSymbol":"FTS"}]
+  },
+  {"Service":"HundredFinance", "PoolList": [
+    {"Address":"0x090a00a2de0ea83def700b5e216f87a5d4f394fe", "NormalizedSymbol":"WBTC"},
+    {"Address":"0xe8f12f5492ec28609d2932519456b7436d6c93bd", "NormalizedSymbol":"ETH"},
+    {"Address":"0x103f2ca2148b863942397dbc50a425cc4f4e9a27", "NormalizedSymbol":"USDC"},
+    {"Address":"0x243e33aa7f6787154a8e59d3c27a66db3f8818ee", "NormalizedSymbol":"SNX"}]
+  }
+]

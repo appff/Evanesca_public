@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "0.1",
+  "description": "Public example dataset manifest for Evanesca open-source release preparation.",
+  "datasets": [
+    {
+      "id": "sample-analysis-result",
+      "kind": "analysis_result",
+      "path": "docs/example-datasets/sample-analysis-result.json",
+      "purpose": "Synthetic schema-conforming sample for documentation and future frontend development.",
+      "empiricalClaim": false
+    },
+    {
+      "id": "case-study-index",
+      "kind": "index",
+      "path": "docs/example-datasets/case-study-index.md",
+      "purpose": "Candidate public transaction hashes for future exported examples.",
+      "empiricalClaim": false
+    }
+  ]
+}

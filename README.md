@@ -1,5 +1,7 @@
 # Evanesca
 
+[![Public smoke test](https://github.com/appff/Evanesca_public/actions/workflows/public-smoke-test.yml/badge.svg)](https://github.com/appff/Evanesca_public/actions/workflows/public-smoke-test.yml)
+
 Evanesca is an open-source framework for reconstructing DeFi value-extraction playbooks as Semantic Financial Graphs and auditing them with transparent financial constraints.
 
 It is designed for forensic reconstruction, measurement, reproducible case studies, and analyst-facing evidence exploration. It is not a real-time exploit detector and does not infer malicious intent from on-chain traces alone.

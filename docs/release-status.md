@@ -27,6 +27,7 @@ Last updated: 2026-07-06.
 - public artifact manifest validates current defect and non-baseline hash-bundle counts.
 - GitHub Actions smoke-test workflow added for install, artifact validation, and CLI help.
 - public repository `main` pushed to `git@github.com:appff/Evanesca_public.git`.
+- GitHub Actions `Public smoke test` completed successfully on commits `c5be848` and `6531449`.
 - `.env` is not tracked; `.env.example` contains placeholder values only.
 - README local links resolve under the current file layout.
 - `docs/example-datasets/sample-analysis-result.json` parses as valid JSON.
@@ -39,7 +40,7 @@ Last updated: 2026-07-06.
 3. Public JSON export CLI exists but has not been replay-tested on curated public transactions.
 4. Existing artifacts have count manifests but still need provenance, reproduction-command, and disclosure review before public release.
 5. Technical report has an expanded public draft but still needs case-study evidence and implementation-synced constraint predicates.
-6. Separate `../Evanesca-public` export has been generated, smoke-tested, committed, and pushed. Remaining release work is artifact provenance/dependency/build cleanup rather than repository publication.
+6. Separate `../Evanesca-public` export has been generated, smoke-tested, committed, pushed, and verified by GitHub Actions. Remaining release work is artifact provenance/dependency/build cleanup rather than repository publication.
 
 ## Next Release Gates
 

@@ -23,20 +23,21 @@ It is designed for forensic reconstruction, measurement, reproducible case studi
 
 ## Current Public Materials
 
-- [Open-source release plan](OPEN_SOURCE_PLAN.md)
-- [Technical report PDF](docs/technical-report/evanesca-technical-report.pdf)
-- [Analysis result schema](docs/public-api/analysis-result.schema.md)
-- [Reproducibility guide](docs/reproducibility/README.md)
-- [Reproducible artifact manifest](docs/reproducible-artifacts/README.md)
-- [Example datasets](docs/example-datasets/README.md)
-- [Key numbers](docs/results/key-numbers.md)
-- [Public claims policy](docs/public-claims.md)
-- [Public release inventory](docs/public-release-inventory.md)
-- [Source code guide](docs/source-code/README.md)
-- [Release checklist](docs/release-checklist.md)
-- [Dependency audit notes](docs/dependency-audit.md)
-- [Release status](docs/release-status.md)
-- [Release notes](docs/release-notes/v0.1.0.md)
+- [Technical report PDF](docs/technical-report/evanesca-technical-report.pdf):
+  project-maintained report describing the method, measurement results, and
+  public artifact boundary.
+- [Source code guide](docs/source-code/README.md): orientation for the released
+  TypeScript codebase.
+- [Reproducibility guide](docs/reproducibility/README.md) and
+  [artifact manifest](docs/reproducible-artifacts/README.md): instructions and
+  files for reproducing the public case studies.
+- [Example datasets](docs/example-datasets/README.md) and
+  [analysis result schema](docs/public-api/analysis-result.schema.md): sample
+  outputs and the JSON contract intended for downstream tools.
+- [Key numbers](docs/results/key-numbers.md): scalar results used by the report
+  and public documentation.
+- [Release status](docs/release-status.md): current limitations and known
+  release state.
 
 ## Research Prototype Results
 

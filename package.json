@@ -1,6 +1,6 @@
 {
   "name": "evanesca",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Open-source framework for reconstructing DeFi value-extraction playbooks as Semantic Financial Graphs",
   "main": "src/Driver.ts",
   "scripts": {

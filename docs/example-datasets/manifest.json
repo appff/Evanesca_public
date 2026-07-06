@@ -20,6 +20,18 @@
       "reproductionCommand": "npm run analyze -- --tx 0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838 --chain ethereum --out docs/example-datasets/bzx-analysis-result.json --pretty"
     },
     {
+      "id": "harvest-analysis-result",
+      "kind": "analysis_result",
+      "path": "docs/example-datasets/harvest-analysis-result.json",
+      "purpose": "Replayed Harvest Ethereum transaction exported by the public CLI for exchange-rate case-study inspection.",
+      "empiricalClaim": true,
+      "txHash": "0x35f8d2f572fceaac9288e5d462117850ef2694786992a8c3f6d02612277b0877",
+      "chain": "ethereum",
+      "providerSensitive": true,
+      "limitation": "Public fallback RPC can miss Curve token metadata that configured archive/API providers recover; graph/evidence shape is the intended stable surface.",
+      "reproductionCommand": "npm run analyze -- --tx 0x35f8d2f572fceaac9288e5d462117850ef2694786992a8c3f6d02612277b0877 --chain ethereum --out docs/example-datasets/harvest-analysis-result.json --pretty"
+    },
+    {
       "id": "case-study-index",
       "kind": "index",
       "path": "docs/example-datasets/case-study-index.md",

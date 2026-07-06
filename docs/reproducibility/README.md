@@ -77,7 +77,14 @@ Current checked-in replayed example:
 
 ```bash
 npm run analyze -- --tx 0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838 --chain ethereum --out docs/example-datasets/bzx-analysis-result.json --pretty
+npm run analyze -- --tx 0x35f8d2f572fceaac9288e5d462117850ef2694786992a8c3f6d02612277b0877 --chain ethereum --out docs/example-datasets/harvest-analysis-result.json --pretty
 ```
+
+The bZx example is currently byte-stable in the public fallback environment.
+The Harvest example is schema-stable but provider-sensitive: public fallback
+RPC can miss Curve token metadata that configured archive/API providers recover,
+changing profit-attribution diagnostics while preserving the 5-node, 18-edge
+evidence shape.
 
 ### Level 2: Confirmed-incident benchmark
 

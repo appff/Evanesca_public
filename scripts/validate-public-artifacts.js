@@ -70,9 +70,18 @@ function validateTechnicalReport() {
   assertFile(readmePath);
 
   const tex = fs.readFileSync(path.join(root, texPath), "utf8");
-  assert(tex.includes("IMC Measurement Snapshot"), `${texPath}: IMC measurement snapshot section required`);
-  assert(tex.includes("IMC Case-Study Partition"), `${texPath}: IMC case-study partition section required`);
-  assert(tex.includes("Validation and Accuracy Evidence"), `${texPath}: validation section required`);
+  assert(
+    tex.includes("Evaluation Snapshot") || tex.includes("IMC Measurement Snapshot"),
+    `${texPath}: IMC-scoped evaluation section required`
+  );
+  assert(
+    tex.includes("Routine DEX arbitrage baseline") || tex.includes("IMC Case-Study Partition"),
+    `${texPath}: arbitrage baseline partition required`
+  );
+  assert(
+    tex.includes("Confirmed-Incident Reconstruction") || tex.includes("Validation and Accuracy Evidence"),
+    `${texPath}: validation section required`
+  );
 
   const figures = Array.from(tex.matchAll(/\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}/g)).map(match => match[1]);
   assert(figures.length > 0, `${texPath}: expected at least one included figure`);

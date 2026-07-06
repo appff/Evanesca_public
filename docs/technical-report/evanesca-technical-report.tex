@@ -1,9 +1,9 @@
-\documentclass[11pt]{article}
+\documentclass[10pt]{article}
 
-\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[letterpaper,left=1.1in,right=1.1in,top=1.08in,bottom=1.05in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{lmodern}
+\usepackage{mathptmx}
 \usepackage{microtype}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -17,6 +17,11 @@
 \usepackage{hyperref}
 \usepackage{xurl}
 \usepackage{url}
+\usepackage{pifont}
+\usepackage{mdframed}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{caption}
 
 \graphicspath{{figures/}}
 \hypersetup{
@@ -27,6 +32,7 @@
 }
 
 \newcommand{\sys}{Evanesca\xspace}
+\newcommand{\defiranger}{DeFiRanger\xspace}
 \newcommand{\numtransactions}{14,187,803\xspace}
 \newcommand{\numincidents}{40\xspace}
 \newcommand{\numflagged}{1,418\xspace}
@@ -38,199 +44,322 @@
 \newcommand{\numother}{77\xspace}
 \newcommand{\numdefects}{219\xspace}
 \newcommand{\numconstraints}{nine\xspace}
+\newcommand{\numdsllines}{107\xspace}
 \newcommand{\constraint}[1]{{\footnotesize\texttt{#1}}}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+\newmdenv[
+  backgroundcolor=gray!7,
+  linewidth=0.6pt,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  innerleftmargin=7pt,
+  innerrightmargin=7pt,
+  skipabove=6pt,
+  skipbelow=6pt
+]{findingbox}
+
+\setlist[itemize]{leftmargin=*,topsep=3pt,itemsep=2pt}
+\setlist[enumerate]{leftmargin=*,topsep=3pt,itemsep=2pt}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.25em}
+\linespread{1.02}
+\captionsetup{font=small,labelfont=bf}
+\titleformat{\section}{\normalfont\large}{\thesection}{1.2em}{}
+\titleformat{\subsection}{\normalfont\normalsize}{\thesubsection}{1.0em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\itshape}{\thesubsubsection}{1.0em}{}
+\titlespacing*{\section}{0pt}{1.35em plus 0.2em minus 0.1em}{0.55em}
+\titlespacing*{\subsection}{0pt}{1.05em plus 0.2em minus 0.1em}{0.45em}
+\titlespacing*{\subsubsection}{0pt}{0.85em plus 0.15em minus 0.1em}{0.35em}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize Publication date: July 2026.}
+\fancypagestyle{firstpage}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[R]{\footnotesize Publication date: July 2026.}
+}
 \emergencystretch=2em
 
-\title{\sys Technical Report:\\
-Open-Source Forensic Reconstruction of DeFi Value Extraction}
-\author{Evanesca Project}
-\date{Public-release draft, July 2026}
-
 \begin{document}
-\maketitle
+\thispagestyle{firstpage}
+\vspace*{0.38in}
 
-\begin{abstract}
-\sys is an open-source framework for reconstructing decentralized-finance
-(DeFi) transactions as Semantic Financial Graphs (SFGs) and auditing those
-graphs with transparent financial constraints. This report reorganizes the
-paper-era \sys research prototype as a public technical report and release
-document. The emphasis is forensic reconstruction, measurement, and
-analyst-facing evidence export, not real-time exploit detection or automatic
-attribution of malicious intent. We describe the threat model, financial
-semantics, SFG abstraction, constraint methodology, case-study evidence,
-paper-era measurement results, public artifacts, and remaining limitations.
-The current release includes source code, documentation, a JSON evidence
-schema, a replayed bZx case-study artifact, and public hash-set manifests.
-\end{abstract}
+\noindent{\Large\bfseries Evanesca Technical Report v0.1}
 
-\section{Positioning}
-\sys should be read as a measurement and forensic reconstruction framework.
-It does not claim to be a production exploit detector, a low-false-positive
-monitor, or a system that infers malicious intent from traces alone. Its output
-is a candidate event: a transaction-local evidence trace that satisfies one or
-more financial constraints and therefore deserves analyst review.
+\vspace{0.85em}
+\noindent{\normalsize EVANESCA PROJECT}
 
-This framing is important because value extraction in DeFi spans routine market
-activity and harmful protocol abuse. MEV and arbitrage can move value without a
-software defect~\cite{flashbots,weintraub2022flash,mevdef}, while flash-loan
-and oracle incidents can use similar swap, borrow, and repay primitives to
-extract value from a protocol-local economic assumption~\cite{qin2021attacking,zhou2023sok}.
-\sys therefore separates reconstruction from final judgment:
-\begin{itemize}[leftmargin=*]
-  \item \textbf{candidate event}: a constraint-backed transaction or trace;
-  \item \textbf{benign arbitrage}: value extraction that resolves price gaps
-        without violating a protocol-local accounting, oracle, collateral,
-        reward, bridge, or derivative-pricing rule;
-  \item \textbf{harmful extraction}: abnormal value transfer caused by
-        exploiting or violating such a protocol-local economic rule;
-  \item \textbf{confirmed incident}: a publicly documented event with
-        replayable on-chain transaction evidence and an external narrative.
+\vspace{1.65em}
+
+\noindent\textbf{Scope.}
+\sys is a research prototype and open-source framework for reconstructing
+decentralized-finance (DeFi) transactions as Semantic Financial Graphs (SFGs)
+and auditing those graphs with transparent financial constraints. This
+technical report reorganizes the paper-era Evanesca work as a public
+whitepaper-style artifact. It explains the measurement problem, threat model,
+semantic recovery pipeline, graph abstraction, constraint methodology,
+evaluation snapshot, public examples, and release limitations.
+
+\vspace{0.4em}
+\noindent\textbf{Position.}
+The framing is deliberately narrower than a production exploit detector. \sys
+surfaces constraint-backed candidate events and replayable evidence traces for
+analyst review; it does not infer malicious intent from traces alone. Using the
+IMC-version measurement snapshot, \sys analyzes \numtransactions Ethereum
+transactions from 2020--2024, reconstructs \numincidents confirmed incidents
+across five chains, and flags \numflagged candidate instances, including
+\numbaseline routine arbitrage baselines and \numnonbaseline non-baseline
+instances. Source-code investigation of the non-baseline set identifies
+\numdefects instances in two under-studied defect families:
+reward-distribution manipulation and derivative-pricing/yield-token deviation.
+
+\section{Introduction}
+\label{sec:introduction}
+
+DeFi incidents are usually explained as isolated exploits: one protocol, one
+transaction, one postmortem. Yet many incidents share a common structure at the
+level of financial actions. A bZx-style price manipulation, a Harvest-style
+exchange-rate manipulation, a reward-distribution abuse, and a derivative-token
+pricing error may involve different contracts and event schemas, but each can
+be reconstructed as an ordered sequence of swaps, deposits, withdrawals,
+borrows, repayments, and profit-taking steps. The repeated structure suggests
+that value extraction can be measured systematically rather than investigated
+only case by case.
+
+This observation creates a measurement challenge. Existing systems address
+important parts of the DeFi security problem: DeFiRanger and BlockEye detect
+known attack patterns or price-manipulation behavior~\cite{wu2021defiranger,wang2021blockeye};
+DeFort and DeFiScope focus on price-manipulation analysis with specialized
+logic~\cite{defort2024,zhong2025defiscope}; and operational systems such as
+Forta and OpenZeppelin Defender provide deployment-facing monitoring and
+alerting~\cite{forta2023whitepaper,ozdefender}. These systems are useful, but
+they often bind analysis to a deployment-specific monitor, predefined attack
+template, or specific attack family. They also tend to emit alerts rather than
+the per-step financial computation needed for independent replay and triage.
+
+\sys takes a different position. It is a measurement and forensic
+reconstruction framework. It recovers protocol-specific traces into uniform
+financial actions, constructs a Semantic Financial Graph, evaluates
+service-class financial constraints, and exports a replayable evidence trace.
+Each match is a \emph{candidate event}, not a verdict that the transaction was
+malicious or harmful. This distinction matters because DeFi value extraction
+does not divide neatly into attacks and normal behavior. MEV and routine
+arbitrage can move value without a software defect~\cite{flashbots,weintraub2022flash,mevdef},
+while flash-loan and oracle incidents can reuse similar swap and borrow
+primitives to exploit a protocol-local economic assumption~\cite{qin2021attacking,zhou2023sok}.
+
+\paragraph{Report scope.}
+This report is not a resubmission of the IMC short paper and is not meant to
+replace a future conference manuscript. It is a public technical report for the
+open-source release. The empirical numbers in the evaluation section are the
+IMC-version measurement snapshot unless explicitly labeled as validation or
+release evidence. Figures are reused from IMC, DeFi 26, and arXiv-era Evanesca
+drafts when they explain the system or a case study; non-IMC scale-out claims
+from older drafts are intentionally excluded.
+
+\paragraph{Contributions.}
+The public release centers on five concrete contributions.
+\begin{itemize}
+  \item \textbf{A protocol-independent forensic abstraction.} \sys maps
+  heterogeneous DeFi traces into typed financial actions and then into SFGs.
+  The novelty claim is not that graphs are new; it is that action recovery,
+  graph construction, constraint evaluation, and evidence export are tied
+  together as a reproducible measurement workflow.
+  \item \textbf{Transparent constraint-based measurement.} \sys uses
+  \numconstraints constraints in \numdsllines lines of DSL to encode
+  service-class financial assumptions rather than incident-specific
+  signatures.
+  \item \textbf{A scoped empirical snapshot.} The IMC-version evaluation
+  analyzes \numtransactions Ethereum transactions and separates routine
+  arbitrage from non-baseline candidate families.
+  \item \textbf{Replayable evidence artifacts.} The public release exports
+  JSON evidence traces for bZx and Harvest case studies and includes manifests
+  for larger public hash-set artifacts.
+  \item \textbf{An open-source release path.} The release includes source code,
+  documentation, public artifact validation, example datasets, and explicit
+  limitations so that future work can extend the measurement pipeline without
+  overstating the current prototype.
 \end{itemize}
 
-The public release goal is narrower than a new conference submission. It is to
-make the system, evidence format, and reproducibility path inspectable: source
-code, technical report, documentation, reproducible artifacts, and example
-datasets should agree with each other and should avoid unsupported claims.
+\section{Definitions and Threat Model}
+\label{sec:threat}
 
-\section{Motivation}
-DeFi attacks are often presented as isolated incidents, but many share recurring
-financial structure. A bZx-style price manipulation, a reward-distribution
-abuse, and a derivative exchange-rate defect may involve different contracts
-and event schemas, yet each can be inspected as an ordered sequence of financial
-actions with value flow, pricing dependencies, and accounting relations.
+\subsection{Terminology}
 
-Existing systems address important parts of this problem. DeFiRanger and
-BlockEye focus on detecting known price-manipulation or attack patterns
-\cite{wu2021defiranger,wang2021blockeye}. DeFort and DeFiScope further analyze
-price manipulation with specialized logic~\cite{defort2024,zhong2025defiscope}.
-Operational systems such as Forta and OpenZeppelin Defender provide
-deployment-facing monitoring and alerting~\cite{forta2023whitepaper,ozdefender}.
-These approaches are useful, but they tend to bind the analysis to a template,
-deployment rule, or specific attack class. \sys instead starts from the
-measurement question: what financial actions occurred, which service-class
-assumptions were stressed, and how did value move?
+\sys separates measurement signals from final security judgments.
+\begin{description}[leftmargin=1.3em,style=nextline]
+  \item[Candidate event.]
+  A transaction or trace for which at least one financial constraint fires. A
+  candidate requires review; it is not automatically an exploit.
+  \item[Benign arbitrage baseline.]
+  Value extraction that resolves price discrepancies across markets without
+  evidence of violating a protocol-local accounting, oracle, collateral,
+  reward, bridge, or derivative-pricing rule.
+  \item[Harmful extraction.]
+  Abnormal value transfer caused by exploiting or violating a protocol-local
+  economic rule, such as a collateral relation, exchange-rate calculation,
+  reward-allocation rule, bridge backing invariant, or oracle assumption.
+  \item[Confirmed incident.]
+  A publicly documented event with replayable on-chain transaction evidence
+  and an external narrative. Confirmed incidents are used as validation anchors,
+  not as a complete population sample.
+\end{description}
 
-\section{Threat Model}
-\subsection{Adversary and Capabilities}
-\sys models transactions created by ordinary users, arbitrageurs, liquidators,
-MEV searchers, flash-loan users, and attackers. The sender may interact through
-one or more externally owned accounts or contracts. An adversarial transaction
-may compose multiple DeFi services atomically, borrow temporary capital, distort
-an AMM, oracle, lending market, reward pool, bridge, or derivative price, and
-then return most intermediate state to normal while retaining value.
+\subsection{Adversary Model}
 
-The framework does not require private mempool access, block-builder control,
-or sandwich capability as core assumptions. Such behavior can be represented
-when visible in traces, but the core abstraction is transaction-local financial
-reconstruction.
+The actor may use one or more externally owned accounts or contracts, compose
+multiple DeFi protocols within one transaction, borrow temporary capital via a
+flash loan, manipulate an AMM or oracle-dependent state, trigger reward logic,
+and unwind positions before transaction completion. The actor may be a routine
+arbitrageur, MEV searcher, liquidator, or attacker. \sys does not require
+private mempool access, block-builder control, or sandwich capability as a core
+assumption; those behaviors can be represented when visible in traces, but the
+primary reconstruction unit is the transaction-local financial action sequence.
 
 \subsection{Loss Subjects}
-The affected party depends on the service class. \sys distinguishes protocol
+
+The loss subject depends on the service class. \sys distinguishes protocol
 reserves, liquidity providers, lending depositors, reward-pool participants,
-derivative-token holders, bridge backing reserves, traders receiving worse
-execution, and cases with no direct victim beyond market-efficiency arbitrage.
-This distinction prevents the system from treating every profitable trade as a
-harmful incident.
+derivative-token holders, bridge backing reserves, and traders receiving worse
+execution. Some profitable transactions have no direct harmed protocol and are
+best described as market-efficiency arbitrage. This is why routine arbitrage is
+kept as an explicit baseline rather than collapsed into false positives.
+
+\begin{findingbox}
+\noindent\textbf{Design position.} \sys measures replayable financial-action
+patterns. It does not infer real-world identity, intent, or legal culpability.
+The output is evidence for analysts, not an automated accusation.
+\end{findingbox}
+
+\section{Measurement Questions}
+\label{sec:questions}
+
+The paper-era evaluation was organized around three research questions that
+remain useful for the public report.
+\begin{itemize}
+  \item \textbf{RQ1: Incident reconstruction.} Can general-purpose constraints
+  reconstruct known DeFi incidents without per-incident logic?
+  \item \textbf{RQ2: Pattern landscape.} What candidate value-extraction
+  patterns emerge at scale once benign arbitrage is separated from
+  non-baseline behavior?
+  \item \textbf{RQ3: Defect validation.} Do non-baseline candidates correspond
+  to concrete implementation defects under source-code and event-log review?
+\end{itemize}
+
+The public release adds a fourth practical question: can the system expose
+enough code, data, and documentation for another researcher to inspect how a
+candidate was reconstructed? This report is structured around that
+reproducibility requirement.
 
 \section{System Overview}
-Figure~\ref{fig:pipeline} shows the paper-era pipeline reused by the public
-release. The report reuses figures from the IMC, DeFi 26, and arXiv-era
-Evanesca drafts where they explain architecture or examples; empirical result
-tables in this report use the IMC measurement snapshot unless explicitly marked
-as validation evidence. The system has four stages.
+\label{sec:overview}
+
+Figure~\ref{fig:pipeline} shows the pipeline. Each stage has a defined input
+and output, so failures can be localized: semantic recovery may miss an
+unsupported protocol, SFG construction may lack token metadata, constraint
+evaluation may fire too broadly, and evidence export may expose an incomplete
+diagnostic.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{new_overview.pdf}
+  \includegraphics[width=0.98\linewidth]{new_overview.pdf}
   \caption{\sys pipeline: semantic recovery, SFG construction, constraint
-  evaluation, and evidence export.}
+  evaluation, and evidence export. The figure is reused from paper-era
+  Evanesca drafts as system documentation.}
   \label{fig:pipeline}
 \end{figure}
 
 \paragraph{Semantic recovery.}
-Protocol-specific adapters decode traces and event logs into typed financial
-actions such as swap, deposit, withdraw, borrow, repay, liquidate, bridge, and
-reward. The adapter boundary is deliberate: protocol-specific decoding belongs
-in semantic recovery, while constraints should operate over service-class
-financial actions rather than incident-specific signatures.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{semantic_model.pdf}
-  \caption{Semantic action model reused from paper-era Evanesca drafts. The
-  figure documents the adapter boundary rather than adding a new experimental
-  result.}
-  \label{fig:semantic_model}
-\end{figure}
+Protocol-specific adapters decode traces and logs into uniform financial
+actions. The public implementation covers common DEX, lending, flash-loan, and
+bridge families, but adapter coverage remains incomplete. The adapter boundary
+is deliberate: protocol-specific decoding belongs in semantic recovery, while
+constraints should operate over service-class financial actions.
 
 \paragraph{SFG construction.}
 Recovered actions are assembled into a directed graph \(G=(V,E)\). Vertices
-represent accounts, contracts, pools, markets, services, and tokens. Edges
-represent typed financial actions and carry token amounts, USD-normalized
-values, protocol context, ordering, and raw evidence pointers. Raw transfers
-alone are not enough because many DeFi incidents depend on shares, collateral,
-debt, rewards, or derivative exchange rates that are not visible as a simple
-token-transfer chain.
+represent accounts, pools, markets, protocol contracts, and token entities.
+Edges represent typed financial actions and carry token amounts, token
+addresses/symbols when known, USD-normalized values, protocol context,
+ordering, and raw evidence pointers.
 
 \paragraph{Constraint evaluation.}
-Constraints encode service-class financial assumptions: AMM value consistency,
-collateral sufficiency, oracle sanity, exchange-rate stability, reward
-allocation fairness, flash-loan structure, and bridge backing. A match is a
-candidate event, not an exploit verdict.
+Constraints encode financial assumptions common to a service class, such as
+value preservation across swaps, collateral sufficiency, exchange-rate
+consistency, oracle sanity, reward-allocation stability, and bridge backing.
+Constraints are measurement hypotheses. A match is a candidate event.
 
 \paragraph{Evidence export.}
-The public CLI exports JSON containing the transaction identity, summary,
-graph, constraints, evidence timeline, and diagnostics. The current schema is
-documented in \path{docs/public-api/analysis-result.schema.md}; example
-outputs live under \path{docs/example-datasets/}.
+The public CLI exports JSON containing transaction identity, a summary, graph
+nodes and edges, fired constraints, evidence steps, and diagnostics. The schema
+is documented in \path{docs/public-api/analysis-result.schema.md}; examples
+live in \path{docs/example-datasets/}.
 
 \section{Semantic Financial Graph}
-The SFG abstraction is not claimed as a novel graph data structure by itself.
-Its contribution is the combination of reusable financial semantics, ordered
-evidence export, and constraint evaluation over cross-protocol actions.
+\label{sec:sfg}
+
+The SFG abstraction is designed to bridge the semantic gap between raw token
+transfers and financial interpretation. Transfer-only representations are often
+insufficient for DeFi incidents because profit can depend on collateral,
+share-price accounting, reward entitlement, virtual reserves, oracle reads, or
+derivative exchange rates. SFG edges therefore represent typed financial
+actions rather than only ERC-20 transfer events.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\linewidth]{semantic_model.pdf}
+  \caption{Semantic action model. Protocol-specific adapters map heterogeneous
+  event schemas into uniform financial actions used by SFG construction.}
+  \label{fig:semantic_model}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\linewidth]{sfg-construction.pdf}
+  \caption{SFG construction. Edges preserve typed actions, value fields, and
+  ordering information needed for replayable evidence.}
+  \label{fig:sfg_construction}
+\end{figure}
 
 \begin{table}[t]
 \centering
 \caption{SFG elements exposed in the public evidence format.}
-\label{tab:sfg}
+\label{tab:sfg_elements}
 \begin{tabularx}{\linewidth}{lX}
 \toprule
-Element & Public meaning \\
+Element & Meaning \\
 \midrule
-Node & Account, protocol contract, pool, market, token, or service entity. \\
-Edge & Typed financial action such as swap, borrow, repay, deposit, or transfer. \\
+Node & Account, protocol contract, pool, market, service, or token entity. \\
+Edge & Typed financial action such as swap, borrow, repay, deposit, withdraw, bridge, or reward. \\
 Value fields & Token amount, token symbol/address when known, and USD-normalized value. \\
-Ordering & Transaction-local sequence used for evidence reconstruction. \\
-Diagnostics & Unsupported actions, missing metadata, and recovery caveats. \\
+Ordering & Transaction-local sequence used for deterministic reconstruction. \\
+Diagnostics & Missing metadata, unsupported action classes, and recovery caveats. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-Compared with cash-flow-only representations, \sys attempts to preserve
-financial relations that matter for DeFi analysis: pricing dependencies,
-collateral and debt relations, reward entitlement, derivative exchange-rate
-relations, bridge mint/redeem backing, action ordering, and PnL attribution.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{sfg-construction.pdf}
-  \caption{SFG construction figure reused from paper-era Evanesca versions.}
-  \label{fig:sfg_construction}
-\end{figure}
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{sfg-evaluation.pdf}
-  \caption{SFG evaluation figure reused to explain how graph evidence feeds
-  constraint checks.}
-  \label{fig:sfg_evaluation}
-\end{figure}
+\paragraph{Difference from cash-flow trees.}
+\defiranger constructs cash-flow trees from raw transfer and balance-change
+patterns~\cite{wu2021defiranger}. That is a strong fit for a subset of price
+manipulation attacks, but transfer-level templates struggle when the important
+state is a share price, collateral relation, reward trigger, or bridge backing
+rule. \sys does not claim that SFGs are categorically better for every task.
+Rather, SFGs are the representation Evanesca needs to make cross-service
+constraints and per-step PnL attribution replayable.
 
 \section{Constraint Methodology}
+\label{sec:constraints}
+
 For an edge \(e\) with nonzero USD input value, \sys commonly computes:
 \[
-  \rho(e) = \frac{\mathrm{valueUSD}(\mathrm{out}(e))}
-                 {\mathrm{valueUSD}(\mathrm{in}(e))}.
+  \rho(e) =
+  \frac{\mathrm{valueUSD}(\mathrm{out}(e))}
+       {\mathrm{valueUSD}(\mathrm{in}(e))}.
 \]
 The paper-era implementation used \(\alpha=0.05\) for DEX swap edges and
 \(\beta=0.02\) for lending or oracle-mediated stablecoin-derivative edges. The
@@ -238,12 +367,12 @@ DEX threshold is above reported routine unexpected slippage on Uniswap
 \cite{zhou2021high}; the stablecoin-derivative threshold is tighter because
 oracle studies report smaller normal movements for major stable assets
 \cite{liu2021firstlook}. These thresholds are measurement parameters, not
-universal constants. A release-quality benchmark still needs sensitivity
-analysis and a public labeling protocol before making strong false-positive or
-false-negative claims.
+universal constants. A stronger future paper should include sensitivity
+analysis over \(\alpha\), \(\beta\), market regime, and protocol class.
 
 \begin{longtable}{p{0.31\linewidth}p{0.59\linewidth}}
-\caption{Current paper-era constraint families.}\label{tab:constraints}\\
+\caption{Current constraint families and service-class signals.}
+\label{tab:constraint_families}\\
 \toprule
 Constraint family & Service-class signal \\
 \midrule
@@ -255,9 +384,9 @@ Constraint family & Service-class signal \\
 \constraint{PRICE\_MANIPULATION} & Abnormal swap value ratio or price deviation. \\
 \constraint{DEX\_K\_INVARIANT} & AMM reserve-invariant deviation or significant swap imbalance. \\
 \constraint{LENDING\_COLLATERALIZATION} & Borrow, withdraw, or accounting behavior inconsistent with collateral assumptions. \\
-\constraint{EXCHANGE\_RATE\_MANIPULATION} & Vault or derivative exchange-rate anomaly. \\
+\constraint{EXCHANGE\_RATE\_MANIPULATION} & Vault, receipt-token, or derivative exchange-rate anomaly. \\
 \constraint{ORACLE\_MANIPULATION} & Oracle-mediated price/accounting inconsistency. \\
-\constraint{BRIDGE\_INTEGRITY\_VIOLATION} & Bridge backing or mint/redeem inconsistency. \\
+\constraint{BRIDGE\_INTEGRITY\_VIOLATION} & Bridge backing, mint, or redeem inconsistency. \\
 \constraint{FLASH\_LOAN\_ATTACK} & Atomic temporary-capital pattern coupled with profit or manipulated state. \\
 \constraint{CONCENTRATED\_LIQUIDITY\_ATTACK} & Tick, liquidity, or price-impact anomaly in concentrated-liquidity markets. \\
 \constraint{EMPTY\_MARKET\_ATTACK} & Low-liquidity lending-market share-price anomaly. \\
@@ -266,195 +395,276 @@ Constraint family & Service-class signal \\
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{dsl-constraints.pdf}
-  \caption{DSL constraint overview from the paper-era report. It is included as
-  method documentation; the numeric evaluation below remains the IMC snapshot.}
+  \includegraphics[width=0.98\linewidth]{dsl-constraints.pdf}
+  \caption{DSL constraint overview. Constraints encode service-class
+  financial assumptions over SFG edges and produce replayable evidence
+  records.}
   \label{fig:dsl_constraints}
 \end{figure}
 
-\section{Case Study: bZx Replay}
-The public release currently includes one replayed case-study artifact:
-\path{docs/example-datasets/bzx-analysis-result.json}. It is generated by:
+\paragraph{DSL shape.}
+Each constraint declares when it applies, which intermediate variables it
+derives, and which violation predicate fires. A simplified example is:
 \begin{verbatim}
-npm run analyze -- --tx \
-0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838 \
---chain ethereum --out docs/example-datasets/bzx-analysis-result.json --pretty
+constraint PRICE_MANIPULATION {
+  when: edge.Type == "DEX" && edge.Action == "Swap"
+  condition: {
+    price_ratio: edge.totalOutUSD / edge.totalInUSD
+  }
+  violation:
+    edge.totalInUSD > 0 && price_ratio > 1.05
+}
 \end{verbatim}
+Production constraints add accounting guards and service-specific fields when
+available, but the key property is auditable replay: the predicate, derived
+values, and evidence edge are exported together.
 
-Figure~\ref{fig:bzx} shows the paper-era bZx walkthrough used to motivate the
-pipeline. In the current public JSON export, the replayed transaction produces
-10 graph nodes, 8 graph edges, 4 constraint records, and 8 evidence steps. The
-summary status is \texttt{flagged}; the current classifier leaves the category
-as \texttt{unattributed}. This is acceptable for a public schema example, but it
-also makes clear that the open-source release should not overstate the current
-classifier as a finished incident-labeling system.
+\section{Datasets and Scope}
+\label{sec:datasets}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{runningExample.pdf}
-  \caption{Representative bZx-style price-manipulation pattern from the
-  paper-era walkthrough.}
-  \label{fig:bzx}
-\end{figure}
+\subsection{Scale-Out Dataset}
 
-\section{IMC Measurement Snapshot}
-The following numbers summarize the IMC-version measurement snapshot. Other
-paper-era drafts are useful for figures and validation context, but this report
-does not import non-IMC scale-out result tables because some earlier drafts used
-broader claims that still need revalidation. Public materials must present
-these IMC numbers with scope qualifiers until the matching dataset manifests,
-population reproduction commands, and labeling protocol are complete.
+The IMC-version scale-out evaluation covers \numtransactions Ethereum
+transactions from January 2020 through December 2024 that match Evanesca's
+supported adapter set. The remaining chains in the paper-era evaluation
+(BSC, Arbitrum, Avalanche, and Optimism) contribute confirmed-incident
+validation examples, not RQ2/RQ3 population prevalence estimates. Counts in
+this report should therefore be read as Ethereum scale-out results unless
+explicitly stated otherwise.
 
-\begin{table}[t]
-\centering
-\caption{IMC scalar claims tracked for the public release.}
-\label{tab:keynumbers}
-\begin{tabularx}{\linewidth}{l>{\raggedleft\arraybackslash}p{0.22\linewidth}X}
-\toprule
-Quantity & Value & Public interpretation \\
-\midrule
-Ethereum transactions analyzed & \numtransactions & Research snapshot over supported DeFi interactions. \\
-Confirmed incidents & \numincidents & Curated replay set requiring explicit inclusion/exclusion criteria. \\
-Total flagged instances & \numflagged & Constraint-backed candidate events. \\
-Baseline arbitrage & \numbaseline & Benign baseline, not harmful by default. \\
-Non-baseline instances & \numnonbaseline & Candidates requiring category-level review. \\
-Implementation-defect instances & \numdefects & Reward-distribution plus derivative-pricing families. \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\subsection{Confirmed-Incident Validation Set}
 
-The non-baseline breakdown is: \numreward reward-distribution manipulation
-instances, \numprice price-manipulation instances, \numyield yield-bearing token
-deviation instances, and \numother unattributed long-tail candidates. The
-public report intentionally separates these from the \numbaseline routine
-arbitrage baseline. Treating the baseline as false positives would misstate the
-measurement goal; treating all candidates as harmful would also be wrong.
+The \numincidents confirmed incidents are publicly documented events with
+available transaction traces across the supported chains. A future polished
+paper should publish a full inclusion/exclusion protocol. The intended
+inclusion criteria are:
+\begin{itemize}
+  \item public postmortem, incident report, or external narrative exists;
+  \item exploit or representative transaction hash is available;
+  \item on-chain trace/log data is accessible;
+  \item economic loss or value transfer is attributable to on-chain behavior;
+  \item the target chain and protocol family are supported by the collector.
+\end{itemize}
+Excluded categories include off-chain compromises without meaningful DeFi
+interaction, rug pulls without reconstructable financial actions, unsupported
+non-EVM chains, bridge-validator compromises without transaction-local
+financial reconstruction, and unavailable traces.
 
-\subsection{IMC Case-Study Partition}
-The case-study partition follows the IMC version. Routine DEX arbitrage is
-reported as a benign baseline when the trace shows cross-market convergence
-without flash-loan, oracle, lending, reward, or derivative-pricing evidence. A
-candidate becomes non-baseline when the same value-ratio signal is coupled with
-state manipulation or cross-protocol dependency: price pumping, oracle-sensitive
-borrowing, reward trigger timing, or yield-token deposit/withdraw conversion.
-This distinction is why Figure~\ref{fig:patterns} is central to the public
-report: it explains how \sys separates routine arbitrage from candidates that
-need deeper review.
+\subsection{Public Example Datasets}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{arbitrage_patterns.pdf}
-  \caption{Representative evidence-trace patterns. Routine arbitrage is kept
-  as a baseline, while manipulation and derivative paths require additional
-  classification.}
-  \label{fig:patterns}
-\end{figure}
+The public release includes a synthetic schema example and two replayed
+transaction examples:
+\begin{itemize}
+  \item \path{docs/example-datasets/bzx-analysis-result.json};
+  \item \path{docs/example-datasets/harvest-analysis-result.json}.
+\end{itemize}
+These files are evidence-format examples, not a complete benchmark. The bZx
+example is byte-stable in the current public fallback environment. The Harvest
+example is schema-stable but provider-sensitive: public fallback RPC can miss
+Curve token metadata that configured archive/API providers recover, changing
+profit-attribution diagnostics while preserving the graph/evidence shape.
 
-\subsection{Validation and Accuracy Evidence}
-The strongest accuracy-style evidence currently carried into this public report
-is the confirmed-incident validation from the paper-era regression suite:
-\sys reconstructs all \numincidents curated incidents under its reconstruction
-criteria. A prior scope-aware comparison table also reports DeFiRanger coverage
-of 33/34 within its price-manipulation scope, while \sys covers 40/40 across
-the broader incident set. This is validation evidence, not a full precision or
-recall claim for the 14.2M-transaction IMC scale-out dataset.
+\section{Evaluation Snapshot}
+\label{sec:evaluation}
+
+\subsection{RQ1: Confirmed-Incident Reconstruction}
+
+\sys reconstructs all \numincidents confirmed incidents under the paper-era
+success criteria: the evidence trace identifies the manipulation or
+value-extracting step, traces a profit path to the beneficiary, and fires at
+least one general-purpose constraint. This is validation evidence for
+reconstruction, not a claim that the incident set is an unbiased sample of all
+DeFi attacks.
 
 \begin{table}[t]
 \centering
 \caption{Validation evidence retained for the public report.}
 \label{tab:validation}
-\begin{tabularx}{\linewidth}{l>{\raggedleft\arraybackslash}p{0.2\linewidth}X}
+\begin{tabularx}{\linewidth}{l>{\raggedleft\arraybackslash}p{0.18\linewidth}X}
 \toprule
 Evaluation item & Result & Scope qualifier \\
 \midrule
-Confirmed-incident reconstruction & 40/40 & Curated public-incident set; verifies reconstruction criteria, not population prevalence. \\
-DeFiRanger within-scope comparison & 33/34 & Price-manipulation specialization from the paper-era comparison. \\
-Baseline arbitrage audit & 956 reviewed & IMC baseline separation; not a general false-positive-rate claim. \\
+Confirmed-incident reconstruction & 40/40 & Curated public-incident set; validates reconstruction criteria. \\
+\defiranger within-scope comparison & 12/17 vs. 17/17 & Scope-aware PMA comparison from paper-era analysis. \\
+Baseline arbitrage audit & 956 reviewed & IMC baseline separation; not a population false-positive-rate claim. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\section{Public Artifacts}
-The public release is organized around reproducible artifacts rather than
-paper-only claims.
+\subsection{RQ2: Pattern Landscape at Scale}
+
+The IMC-version scale-out evaluation flags \numflagged instances. The key
+measurement choice is to separate \numbaseline routine arbitrage instances from
+\numnonbaseline non-baseline instances. Treating the baseline as false positives
+would misstate the measurement task; treating all candidates as harmful would
+also be wrong.
 
 \begin{table}[t]
 \centering
-\caption{Current public artifact status.}
+\caption{IMC-version flagged-instance breakdown.}
+\label{tab:breakdown}
+\begin{tabularx}{\linewidth}{l>{\raggedleft\arraybackslash}p{0.18\linewidth}X}
+\toprule
+Category & Count & Interpretation \\
+\midrule
+Routine DEX arbitrage baseline & \numbaseline & Profitable price-discrepancy resolution without harmful-evidence criteria. \\
+Reward-distribution manipulation & \numreward & Momentary in/out behavior around reward logic. \\
+Price manipulation & \numprice & Flash-loan or state-coupled abnormal price movement. \\
+Yield-bearing token deviation & \numyield & Cross-protocol derivative or receipt-token exchange-rate gap. \\
+Other non-baseline candidates & \numother & Long tail requiring analyst review. \\
+\midrule
+\textbf{Total} & \textbf{\numflagged} & Constraint-backed candidate instances. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\linewidth]{arbitrage_patterns.pdf}
+  \caption{Arbitrage and non-baseline patterns. Panel A is retained as a benign
+  baseline; Panels B and C show manipulation and yield-token paths that require
+  additional review.}
+  \label{fig:patterns}
+\end{figure}
+
+\begin{findingbox}
+\noindent\textbf{Finding (RQ2).} At 14.2M-transaction scale, the same
+\numconstraints constraints produce a structured landscape rather than a single
+attack template: \numbaseline routine arbitrage and \numnonbaseline
+non-baseline candidates spanning reward, price, yield-token, and long-tail
+families.
+\end{findingbox}
+
+\subsection{RQ3: Implementation-Defect Validation}
+
+The paper-era source-code and event-log review identifies \numdefects
+instances in two defect families. The \numyield yield-bearing token deviations
+map to derivative-pricing or exchange-rate errors. The \numreward
+reward-distribution instances map to reward-allocation bias where payout logic
+uses momentary balances rather than sustained exposure.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\linewidth]{case_tend.pdf}
+  \caption{Representative reward-distribution manipulation pattern. A
+  flash-loan-funded path triggers reward payout and immediately unwinds.}
+  \label{fig:tend}
+\end{figure}
+
+\paragraph{Derivative pricing and yield-token deviation.}
+These cases involve cross-protocol deposit/withdraw or redemption paths where a
+receipt token, vault share, or derivative asset is priced inconsistently across
+services. The extraction is not visible as a single suspicious transfer; it
+appears when the SFG links acquisition, conversion, redemption, and unwind
+steps.
+
+\paragraph{Reward-distribution bias.}
+These cases use temporary liquidity or momentary balances to capture rewards
+without sustained holding. The public report keeps the numeric finding from the
+IMC snapshot but avoids claiming current exploitability or active disclosure
+status beyond what the public artifacts can substantiate.
+
+\begin{findingbox}
+\noindent\textbf{Finding (RQ3).} Of the \numnonbaseline non-baseline
+instances, \numdefects correspond to concrete implementation-defect families
+under source-code/event-log review. The remaining non-baseline candidates
+include price manipulation and unresolved long-tail cases, so the public
+release should not describe every candidate as a vulnerability.
+\end{findingbox}
+
+\section{Case Studies}
+\label{sec:case_studies}
+
+\subsection{bZx Replay}
+
+The public bZx artifact is generated with:
+\begin{verbatim}
+npm run analyze -- --tx \
+0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838 \
+--chain ethereum --out docs/example-datasets/bzx-analysis-result.json --pretty
+\end{verbatim}
+In the checked-in public export, the transaction produces 10 graph nodes, 8
+graph edges, 4 constraint records, and 8 evidence steps. The summary status is
+\texttt{flagged}; the category remains \texttt{unattributed}. This is
+appropriate for a public evidence-format example because the JSON demonstrates
+reconstruction and constraint evidence without overstating automatic
+classification.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\linewidth]{runningExample.pdf}
+  \caption{Representative bZx-style price-manipulation path used as a
+  walkthrough for semantic recovery, SFG construction, and evidence extraction.}
+  \label{fig:bzx}
+\end{figure}
+
+\subsection{Harvest Replay}
+
+The public Harvest artifact is generated with:
+\begin{verbatim}
+npm run analyze -- --tx \
+0x35f8d2f572fceaac9288e5d462117850ef2694786992a8c3f6d02612277b0877 \
+--chain ethereum --out docs/example-datasets/harvest-analysis-result.json --pretty
+\end{verbatim}
+The checked-in export produces 5 graph nodes, 18 graph edges, 2 constraint
+records, and 18 evidence steps. The summary reports exchange-rate manipulation
+signals and a flash-loan-profit diagnostic, while the category remains
+\texttt{unattributed}. The artifact is useful as an exchange-rate walkthrough
+and frontend evidence-trace input; it should not be cited as a final automatic
+incident label.
+
+\section{Comparison With Prior Work}
+\label{sec:prior}
+
+\begin{table}[t]
+\centering
+\caption{Scope comparison with related DeFi security systems.}
+\label{tab:comparison}
+\begin{tabularx}{\linewidth}{lXXX}
+\toprule
+System & Primary input & Main abstraction & Relevance to \sys \\
+\midrule
+\defiranger~\cite{wu2021defiranger} & Traces/events & Cash-flow tree & Strong baseline for price-manipulation scope. \\
+BlockEye~\cite{wang2021blockeye} & On-chain events & Attack hunting & Operational attack hunting and monitoring. \\
+DeFort~\cite{defort2024} & Transaction/state data & PMA analysis & Specialized automatic price-manipulation detection. \\
+DeFiScope~\cite{zhong2025defiscope} & DeFi operations & PMA reasoning workflow & Broad price-manipulation reasoning. \\
+Forta/OZ~\cite{forta2023whitepaper,ozdefender} & Live deployment events & Rule alerts & Operational monitoring and alert delivery. \\
+\sys & Traces and semantic actions & SFG plus constraints & Replayable candidate reconstruction across service classes. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The main difference is practical rather than rhetorical. \sys should be judged
+by whether it exports enough evidence for replay and triage: typed actions,
+graph edges, constraint predicates, derived values, and diagnostics. Prior
+systems remain important baselines for future conference work. A future
+submission should include a case-by-case comparison against DeFiRanger,
+DeFiScope, DeFort, Forta-style rules, and an ensemble baseline where feasible.
+
+\section{Public Release and Reproducibility}
+\label{sec:release}
+
+The open-source release is organized around artifacts rather than paper-only
+claims.
+
+\begin{table}[t]
+\centering
+\caption{Public release artifact status.}
 \label{tab:artifacts}
 \begin{tabularx}{\linewidth}{lX}
 \toprule
 Artifact & Status \\
 \midrule
-Source code & Present with public CLI; repository-wide TypeScript build cleanup remains open. \\
-Technical report & This LaTeX/PDF report plus the Markdown planning report. \\
-Example datasets & Synthetic schema sample and replayed bZx JSON. \\
-Defect hash set & 219-hash public-looking subset with manifest; provenance review required before tag. \\
-Non-baseline hash set & 1,386-hash broader candidate bundle with manifest; claim-scope review required before tag. \\
-GitHub release path & Separate public repository at \url{https://github.com/appff/Evanesca_public}. \\
+Technical report & This LaTeX/PDF report and the companion Markdown planning note. \\
+Source code & Public repository with CLI smoke path; repository-wide TypeScript build cleanup remains open. \\
+Documentation & README, source-code guide, public claims policy, release checklist, and reproducibility guide. \\
+Reproducible artifacts & Public artifact manifests and validator; population reproduction still requires external RPC/API services. \\
+Example datasets & Synthetic schema sample plus replayed bZx and Harvest JSON exports. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-The artifact validator checks the example dataset schema and the public hash-set
-counts:
-\begin{verbatim}
-npm run validate:public-artifacts
-\end{verbatim}
-The release also contains a smoke-test GitHub Actions workflow that installs
-dependencies, validates artifacts, and checks the public CLI help path.
-
-\section{Reward and Derivative Findings}
-The paper-era investigation found two implementation-defect families that are
-kept as public hash-set artifacts after provenance review: reward-distribution
-manipulation and derivative-pricing/yield-bearing token deviation. Figure
-\ref{fig:tend} illustrates a representative reward-distribution pattern. A
-flash-loan-funded swap triggers reward behavior inside token logic and the
-actor exits through a reverse path. The important point for \sys is not the
-specific token, but that the reward effect and the profit-taking path occur
-across contracts; a transaction-local SFG keeps those relations in one
-evidence trace.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{case_tend.pdf}
-  \caption{Representative reward-distribution manipulation pattern from the
-  paper-era artifact set.}
-  \label{fig:tend}
-\end{figure}
-
-\section{Comparison With Prior Work}
-\sys overlaps with prior DeFi attack-analysis and monitoring systems, but its
-public release targets a different operational point.
-
-\begin{table}[t]
-\centering
-\caption{Scope comparison.}
-\label{tab:comparison}
-\begin{tabularx}{\linewidth}{lXXX}
-\toprule
-System & Primary input & Main abstraction & Public release distinction \\
-\midrule
-DeFiRanger~\cite{wu2021defiranger} & Traces/events & Price-manipulation model & Strong baseline for known price manipulation. \\
-BlockEye~\cite{wang2021blockeye} & On-chain events & Attack hunting/monitoring & Operational attack hunting. \\
-DeFort~\cite{defort2024} & Transaction/state data & Price-manipulation analysis & Specialized automatic PM detection. \\
-DeFiScope~\cite{zhong2025defiscope} & DeFi operations & PM reasoning workflow & Broad PM reasoning, LLM-assisted. \\
-Forta/OZ~\cite{forta2023whitepaper,ozdefender} & Live deployment events & Rule alerts & Real-time operational monitoring. \\
-\sys & Traces and semantic actions & SFG plus constraints & Reconstructs replayable candidate evidence across service classes. \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-This comparison should be sharpened before any future conference submission:
-the public release can support case-by-case comparison, but it does not yet
-provide a complete ensemble baseline or a precision/recall table against all
-prior systems.
-
-\section{Reproducibility}
-A public claim should identify the code revision, configuration, dependency
-lockfile, environment variables, input transaction hashes or dataset manifest,
-command line, expected output, and limitations. The current minimum public
-workflow is:
+\paragraph{Minimum public commands.}
 \begin{verbatim}
 npm install
 npm run analyze -- --help
@@ -463,39 +673,69 @@ npm run analyze -- --tx <transaction-hash> --chain ethereum \
 npm run validate:public-artifacts
 \end{verbatim}
 
-The bZx example has been replayed from a fresh public export without a local
-\texttt{cache/} directory, using public RPC fallback providers. Population
-artifacts still require external services such as Etherscan and Ethereum
-archive/RPC access, as documented in the artifact manifests.
+\paragraph{Claim policy.}
+Every public empirical claim should identify the code revision, input hashes or
+dataset manifest, command line, configuration, external API/RPC requirements,
+and expected output. Claims that require private credentials or unpublished
+datasets must be marked as unreproduced in the public release.
 
-\section{Limitations and Release Gates}
-\sys remains a research prototype. Current limitations include incomplete
-adapter coverage, trace/RPC dependence, USD-normalization sensitivity, possible
-false positives from unusual benign behavior, false negatives for unsupported
-protocols or hidden state updates, and incomplete public labeling for the full
-candidate population.
+\section{Limitations}
+\label{sec:limitations}
 
-Before a stronger release tag or future conference submission, the project
-should complete:
-\begin{itemize}[leftmargin=*]
-  \item repository-wide TypeScript build cleanup;
-  \item dependency audit triage;
-  \item implementation-synced constraint predicate documentation;
-  \item public inclusion/exclusion criteria for confirmed incidents;
+\sys remains a research prototype. The main limitations are:
+\begin{itemize}
+  \item \textbf{Adapter coverage.} Unsupported protocols can produce false
+  negatives or incomplete evidence traces.
+  \item \textbf{Trace and RPC dependence.} Public fallback RPC may omit token
+  metadata or historical state needed for richer diagnostics.
+  \item \textbf{USD normalization sensitivity.} Historical price sources can
+  affect profit diagnostics, especially for thinly traded or derivative tokens.
+  \item \textbf{Threshold sensitivity.} \(\alpha\) and \(\beta\) are defended
+  measurement parameters, not universal constants.
+  \item \textbf{Manual labeling.} The public release does not yet provide a
+  complete precision/recall evaluation over the \numflagged candidate set.
+  \item \textbf{Build status.} The source tree has a public CLI smoke path and
+  artifact validation, but repository-wide TypeScript build cleanup remains a
+  release gate.
+\end{itemize}
+
+\section{Ethics and Disclosure}
+\label{sec:ethics}
+
+The release should avoid publishing exploit recipes beyond already public
+transaction traces and high-level financial-action explanations. The public
+examples use historical transactions and focus on reconstruction, not live
+attack enablement. Candidate labels must be phrased conservatively: flagged
+transactions are evidence for review, not accusations. Any future disclosure of
+newly active defects should follow coordinated disclosure norms before public
+release.
+
+\section{Future Work}
+\label{sec:future}
+
+A future conference submission remains optional. If pursued, it should not
+reuse this technical report as-is; it should add the missing evaluation rigor:
+\begin{itemize}
+  \item explicit inclusion/exclusion criteria for the \numincidents incident set;
+  \item semantic-recovery correctness evaluation with sampled manual labels;
+  \item candidate classification protocol with multiple annotators;
+  \item precision/recall or top-\(k\) triage evaluation;
   \item threshold sensitivity analysis for \(\alpha\) and \(\beta\);
-  \item human-labeling protocol for precision/recall claims;
-  \item additional curated case-study JSON exports beyond bZx.
+  \item case-by-case comparison against prior systems and ensembles;
+  \item held-out protocol evaluation to quantify adapter generality.
 \end{itemize}
 
 \section{Conclusion}
+\label{sec:conclusion}
+
 \sys exposes DeFi transactions as replayable financial-action evidence rather
-than opaque alerts. The open-source release should therefore be judged by
-whether its code, report, schema, artifacts, and examples let another researcher
-inspect how a candidate was reconstructed. The current public package provides
-that baseline: a source tree, technical report, evidence schema, replayed bZx
-example, artifact manifests, and release checks. Future conference work can
-build on this foundation by adding stronger correctness evaluation, prior-work
-comparisons, and sensitivity analysis.
+than opaque alerts. This report reframes the paper-era prototype as a public
+open-source technical artifact: a source tree, SFG/evidence schema, constraint
+methodology, IMC-scoped measurement snapshot, replayed examples, and
+reproducibility path. The right success criterion for the release is not
+whether every candidate is automatically labeled, but whether another
+researcher can inspect how a candidate was reconstructed and decide what claim
+is justified.
 
 \bibliographystyle{plain}
 \bibliography{evanesca-technical-report}

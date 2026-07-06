@@ -24,7 +24,7 @@ It is designed for forensic reconstruction, measurement, reproducible case studi
 ## Current Public Materials
 
 - [Open-source release plan](OPEN_SOURCE_PLAN.md)
-- [Technical report draft](docs/technical-report/evanesca-technical-report.md)
+- [Technical report PDF](docs/technical-report/evanesca-technical-report.pdf)
 - [Analysis result schema](docs/public-api/analysis-result.schema.md)
 - [Reproducibility guide](docs/reproducibility/README.md)
 - [Reproducible artifact manifest](docs/reproducible-artifacts/README.md)
@@ -36,13 +36,13 @@ It is designed for forensic reconstruction, measurement, reproducible case studi
 - [Release checklist](docs/release-checklist.md)
 - [Dependency audit notes](docs/dependency-audit.md)
 - [Release status](docs/release-status.md)
-- [Draft release notes](docs/release-notes/v0.1.0.md)
+- [Release notes](docs/release-notes/v0.1.0.md)
 
-## Research Prototype Snapshot
+## Research Prototype Results
 
-The current research prototype was evaluated on a paper-era dataset of 14,187,803 Ethereum transactions and a benchmark of 40 public DeFi incidents across five chains. The associated scalar set includes 1,418 flagged instances, 956 routine arbitrage baseline instances, 462 non-baseline instances, and 219 implementation-defect instances.
+The current research prototype was evaluated on 14,187,803 Ethereum transactions and a benchmark of 40 public DeFi incidents across five chains. The associated scalar set includes 1,418 flagged instances, 956 routine arbitrage baseline instances, 462 non-baseline instances, and 219 implementation-defect instances.
 
-These numbers describe a specific research snapshot. See the technical report and artifact documentation for scope, limitations, and reproducibility notes.
+These numbers are bounded by the documented dataset and artifact scope. See the technical report and artifact documentation for limitations and reproducibility notes.
 
 ## Installation
 
@@ -100,17 +100,16 @@ The frontend should consume exported analysis JSON rather than importing interna
 
 ## Technical Report
 
-The public technical report is a project-maintained document, not a copy of the IMC submission. It explains Evanesca as an open-source framework for DeFi transaction reconstruction, Semantic Financial Graph generation, constraint evaluation, and evidence exploration.
+The public technical report is a project-maintained document. It explains Evanesca as an open-source framework for DeFi transaction reconstruction, Semantic Financial Graph generation, constraint evaluation, and evidence exploration.
 
-- [docs/technical-report/evanesca-technical-report.md](docs/technical-report/evanesca-technical-report.md)
+- [docs/technical-report/evanesca-technical-report.pdf](docs/technical-report/evanesca-technical-report.pdf)
 
 ## Release Status
 
-The open-source branch is still in preparation. Current blockers are tracked in [docs/release-status.md](docs/release-status.md).
+The open-source release is maintained in the public repository. Current limitations and known blockers are tracked in [docs/release-status.md](docs/release-status.md).
 
-The intended publication path is a separate public repository generated from
-the curated release subset, rather than publishing paper-era working files from
-this research repository directly.
+The public repository contains a curated release subset rather than the full
+research working tree.
 
 ## Frontend Roadmap
 

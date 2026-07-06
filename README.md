@@ -31,13 +31,10 @@ It is designed for forensic reconstruction, measurement, reproducible case studi
 - [Reproducibility guide](docs/reproducibility/README.md) and
   [artifact manifest](docs/reproducible-artifacts/README.md): instructions and
   files for reproducing the public case studies.
-- [Example datasets](docs/example-datasets/README.md) and
-  [analysis result schema](docs/public-api/analysis-result.schema.md): sample
-  outputs and the JSON contract intended for downstream tools.
+- [Example datasets](docs/example-datasets/README.md): sample public replay
+  outputs.
 - [Key numbers](docs/results/key-numbers.md): scalar results used by the report
   and public documentation.
-- [Release status](docs/release-status.md): current limitations and known
-  release state.
 
 ## Research Prototype Results
 
@@ -91,39 +88,11 @@ dependency installation with Puppeteer browser download disabled, public
 artifact validation, and CLI help. Full benchmark and replay jobs require
 archive RPC credentials and are not enabled by default.
 
-## Output Schema
-
-The future CLI and frontend evidence explorer should exchange analysis results using the documented JSON contract:
-
-- [docs/public-api/analysis-result.schema.md](docs/public-api/analysis-result.schema.md)
-
-The frontend should consume exported analysis JSON rather than importing internal TypeScript modules directly.
-
 ## Technical Report
 
 The public technical report is a project-maintained document. It explains Evanesca as an open-source framework for DeFi transaction reconstruction, Semantic Financial Graph generation, constraint evaluation, and evidence exploration.
 
 - [docs/technical-report/evanesca-technical-report.pdf](docs/technical-report/evanesca-technical-report.pdf)
-
-## Release Status
-
-The open-source release is maintained in the public repository. Current limitations and known blockers are tracked in [docs/release-status.md](docs/release-status.md).
-
-The public repository contains a curated release subset rather than the full
-research working tree.
-
-## Frontend Roadmap
-
-Frontend work is intentionally deferred until the public technical report, README, and analysis-result schema are stable.
-
-The intended frontend role is an evidence explorer:
-
-- transaction or case-study input;
-- SFG visualization;
-- constraint firing panel;
-- evidence timeline;
-- PnL/value-flow summary;
-- curated examples.
 
 ## License
 

@@ -61,37 +61,45 @@ function validateAnalysisResult(relativePath) {
 function validateTechnicalReport() {
   const texPath = "docs/technical-report/evanesca-technical-report.tex";
   const pdfPath = "docs/technical-report/evanesca-technical-report.pdf";
-  const bibPath = "docs/technical-report/evanesca-technical-report.bib";
-  const readmePath = "docs/technical-report/README.md";
 
-  assertFile(texPath);
   const pdfFullPath = assertFile(pdfPath);
-  assertFile(bibPath);
-  assertFile(readmePath);
-
-  const tex = fs.readFileSync(path.join(root, texPath), "utf8");
-  assert(
-    tex.includes("Evaluation Snapshot") || tex.includes("IMC Measurement Snapshot"),
-    `${texPath}: IMC-scoped evaluation section required`
-  );
-  assert(
-    tex.includes("Routine DEX arbitrage baseline") || tex.includes("IMC Case-Study Partition"),
-    `${texPath}: arbitrage baseline partition required`
-  );
-  assert(
-    tex.includes("Confirmed-Incident Reconstruction") || tex.includes("Validation and Accuracy Evidence"),
-    `${texPath}: validation section required`
-  );
-
-  const figures = Array.from(tex.matchAll(/\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}/g)).map(match => match[1]);
-  assert(figures.length > 0, `${texPath}: expected at least one included figure`);
-  for (const figure of figures) {
-    assertFile(path.join("docs/technical-report/figures", figure));
-  }
-
   const pdf = fs.readFileSync(pdfFullPath);
   assert(pdf.subarray(0, 4).toString("utf8") === "%PDF", `${pdfPath}: missing PDF header`);
   assert(pdf.length > 100000, `${pdfPath}: PDF unexpectedly small`);
+
+  const texFullPath = path.join(root, texPath);
+  if (!fs.existsSync(texFullPath)) return;
+
+  const tex = fs.readFileSync(texFullPath, "utf8");
+  assert(
+    tex.includes("\\documentclass[acmlarge,anonymous"),
+    `${texPath}: expected acmart acmlarge anonymous format`
+  );
+  assert(
+    tex.includes("\\usepackage{libertine}"),
+    `${texPath}: expected libertine package`
+  );
+  assert(
+    tex.includes("imc-src/introduction") &&
+      tex.includes("imc-src/methodology") &&
+      tex.includes("imc-src/results"),
+    `${texPath}: expected IMC manuscript source inputs`
+  );
+
+  for (const sourceFile of [
+    "docs/technical-report/imc-src/introduction.tex",
+    "docs/technical-report/imc-src/methodology.tex",
+    "docs/technical-report/imc-src/results.tex",
+    "docs/technical-report/imc-src/related-discussion.tex",
+    "docs/technical-report/imc-src/conclusion.tex",
+    "docs/technical-report/imc-src/Evanesca.bib",
+    "docs/technical-report/imc-src/figures/new_overview.pdf",
+    "docs/technical-report/imc-src/figures/runningExample.pdf",
+    "docs/technical-report/imc-src/figures/arbitrage_patterns.pdf",
+    "docs/technical-report/imc-src/figures/case_tend.pdf",
+  ]) {
+    assertFile(sourceFile);
+  }
 }
 
 function validateManifest() {

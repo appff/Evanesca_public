@@ -8,6 +8,30 @@
       "releaseReady": false,
       "status": "provenance-review-required",
       "description": "Public-looking implementation-defect transaction hash subset.",
+      "provenance": {
+        "source": "Evanesca paper-era measurement recovery artifacts and strict DSL replay records.",
+        "paperWindow": "Ethereum blocks 9193266-21368000, corresponding to 2020-01-01 through 2024-12-13.",
+        "selection": "The 219-hash subset corresponds to the two implementation-defect families documented as the paper-era RQ3 novelty claim.",
+        "claimScope": "Transaction-hash artifact only; it does not publish the complete 1,418 candidate set."
+      },
+      "reproduction": {
+        "singleHashCommand": "ETHERSCAN_API_KEY=<key> EVANESCA_DSL_ONLY=true npx ts-node scripts/run_tend_candidates.ts CANDIDATE_FILE=<json-with-one-hash> MAX_TXS=1",
+        "supportingDocs": [
+          "artifacts/defect-hashes-public/README.md",
+          "docs/reproducibility/README.md"
+        ],
+        "requirements": [
+          "Ethereum archive/RPC access",
+          "Etherscan API key",
+          "npm dependencies installed"
+        ]
+      },
+      "limitations": [
+        "Counts are validated from checked-in files, but full population regeneration remains a release gate.",
+        "Near-threshold price-ratio findings may be sensitive to provider and price-source drift.",
+        "This bundle is not a standalone precision/recall evaluation."
+      ],
+      "disclosureStatus": "public transaction hashes only; no private reports, correspondence, or internal reserves included",
       "expectedCounts": {
         "total": 219,
         "reward_distribution_TEND_WING": 207,
@@ -57,6 +81,31 @@
       "releaseReady": false,
       "status": "provenance-review-required",
       "description": "Recovered non-baseline transaction hash bundle; broader than the headline implementation-defect subset.",
+      "provenance": {
+        "source": "Recovered paper-era non-baseline hash bundle assembled from protocol/token discovery paths and DSL-only replay.",
+        "paperWindow": "Ethereum blocks 9193266-21368000, corresponding to 2020-01-01 through 2024-12-13.",
+        "selection": "Union of TEND, WING, Pendle attacker, CreamY pool, and dYdX SoloMargin sampled discovery sources after duplicate removal.",
+        "claimScope": "Broader candidate population for inspection; not equivalent to confirmed harmful incidents."
+      },
+      "reproduction": {
+        "populationCommand": "ETHERSCAN_API_KEY=<key> bash artifacts/non-baseline-hashes/reproduce.sh",
+        "singleHashCommand": "ETHERSCAN_API_KEY=<key> bash artifacts/non-baseline-hashes/reproduce.sh verify <0xtxhash>",
+        "supportingDocs": [
+          "artifacts/non-baseline-hashes/README.md",
+          "docs/reproducibility/README.md"
+        ],
+        "requirements": [
+          "Ethereum archive/RPC access",
+          "Etherscan API key",
+          "npm dependencies installed"
+        ]
+      },
+      "limitations": [
+        "The bundle is a non-baseline candidate set, not a confirmed exploit list.",
+        "Population reproduction depends on external RPC and Etherscan availability.",
+        "A small number of findings near alpha=0.05 can move under provider or price-source drift."
+      ],
+      "disclosureStatus": "public transaction hashes only; review before using as a headline release artifact",
       "expectedCounts": {
         "totalUnique": 1386,
         "TEND_token": 301,

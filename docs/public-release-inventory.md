@@ -45,7 +45,7 @@ These files are intended for the public release after normal review:
 | `SECURITY.md` | Security contact and disclosure policy |
 | `CITATION.cff` | Citation metadata |
 | `OPEN_SOURCE_PLAN.md` | Release plan |
-| `docs/technical-report/` | Public technical report |
+| `docs/technical-report/` | Public technical report source, PDF, bibliography, and self-contained figures |
 | `docs/public-api/` | JSON schema for CLI/frontend artifacts |
 | `docs/example-datasets/` | Synthetic schema example and future curated examples |
 | `docs/reproducibility/` | Reproduction guide |

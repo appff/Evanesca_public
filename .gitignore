@@ -57,6 +57,13 @@ docs/papers/evanesca/.render_fig*/
 docs/papers/evanesca/Evanesca_comment.pdf
 docs/papers/evanesca/evanesca_kor.md
 texput.log
+docs/technical-report/*.aux
+docs/technical-report/*.bbl
+docs/technical-report/*.blg
+docs/technical-report/*.fdb_latexmk
+docs/technical-report/*.fls
+docs/technical-report/*.log
+docs/technical-report/*.out
 
 # Local agent/tool state
 .evanesca-public-export

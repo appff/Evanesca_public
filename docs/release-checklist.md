@@ -6,6 +6,7 @@ Status: draft checklist for `v0.1.0`.
 
 - [x] README rewritten for public positioning.
 - [x] Technical report public draft added.
+- [x] Technical report LaTeX source and PDF added.
 - [x] Public analysis-result schema added.
 - [x] Reproducibility guide added.
 - [x] Artifact manifest draft added.
@@ -17,6 +18,7 @@ Status: draft checklist for `v0.1.0`.
 - [x] Public release inventory added.
 - [x] Key numbers public summary added.
 - [x] Technical report sections filled beyond skeleton.
+- [x] Technical report PDF builds with `latexmk`.
 - [x] README links verified after current file layout.
 
 ## Repository Hygiene

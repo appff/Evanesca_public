@@ -33,7 +33,7 @@ function logError(...args: unknown[]): void {
 }
 
 const DEFAULT_INFURA_URL =
-  "https://mainnet.infura.io/v3/${INFURA_PROJECT_ID}";
+  "https://eth-mainnet.public.blastapi.io";
 const CREDITS_PER_DAY = 15_000_000;
 const CREDITS_PER_SECOND = 4_000;
 const CREDITS_PER_BLOCK_RECEIPTS = 30;

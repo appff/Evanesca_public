@@ -21,15 +21,16 @@ It is designed for forensic reconstruction, measurement, reproducible case studi
 - Not a complete detector for all DeFi attacks.
 - Not financial, legal, or security advice.
 
-## Current Public Materials
+## Technical Report
 
-- [Technical report PDF](docs/technical-report/evanesca-technical-report.pdf):
-  project-maintained report describing the method, implementation model,
-  measurement snapshot, and public artifact boundary.
+The public technical report is the primary documentation artifact for
+Evanesca. It describes the method, implementation model, measurement snapshot,
+limitations, and public artifact boundary.
 
-The public `docs/` tree is intentionally kept small. The technical report is
-the primary documentation artifact; source files and scripts remain in the
-repository for code inspection and smoke testing.
+- [docs/technical-report/evanesca-technical-report.pdf](docs/technical-report/evanesca-technical-report.pdf)
+
+The public `docs/` tree is intentionally kept small; source files and scripts
+remain in the repository for code inspection and smoke testing.
 
 ## Research Prototype Results
 
@@ -79,12 +80,6 @@ The public GitHub workflow intentionally runs only smoke tests: dependency
 installation with Puppeteer browser download disabled, technical-report PDF
 validation, and CLI help. Full benchmark and replay jobs require archive RPC
 credentials and are not enabled by default.
-
-## Technical Report
-
-The public technical report is a project-maintained document. It explains Evanesca as an open-source framework for DeFi transaction reconstruction, Semantic Financial Graph generation, constraint evaluation, and evidence exploration.
-
-- [docs/technical-report/evanesca-technical-report.pdf](docs/technical-report/evanesca-technical-report.pdf)
 
 ## License
 

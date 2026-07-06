@@ -72,8 +72,8 @@ function validateTechnicalReport() {
 
   const tex = fs.readFileSync(texFullPath, "utf8");
   assert(
-    tex.includes("\\documentclass[acmlarge,anonymous"),
-    `${texPath}: expected acmart acmlarge anonymous format`
+    tex.includes("\\documentclass[acmlarge"),
+    `${texPath}: expected acmart acmlarge format`
   );
   assert(
     tex.includes("\\usepackage{libertine}"),

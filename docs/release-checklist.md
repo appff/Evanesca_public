@@ -15,6 +15,7 @@ Status: draft checklist for `v0.1.0`.
 - [x] Public artifact validation script added.
 - [x] Public claims policy added.
 - [x] Source code guide added.
+- [x] Build status audit added.
 - [x] Public release inventory added.
 - [x] Key numbers public summary added.
 - [x] Technical report sections filled beyond skeleton.

@@ -50,7 +50,7 @@ These files are intended for the public release after normal review:
 | `docs/example-datasets/` | Synthetic schema example and future curated examples |
 | `docs/reproducibility/` | Reproduction guide |
 | `docs/reproducible-artifacts/` | Artifact manifest planning |
-| `docs/source-code/` | Source tree guide |
+| `docs/source-code/` | Source tree guide and build-status audit |
 | `docs/public-claims.md` | Public claim policy |
 | `docs/results/key-numbers.md` | Public scalar summary for paper-era results |
 | `docs/dependency-audit.md` | Dependency audit status |

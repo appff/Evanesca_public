@@ -23,6 +23,13 @@ function assert(condition, message) {
   if (!condition) fail(message);
 }
 
+function assertFile(relativePath) {
+  const fullPath = path.join(root, relativePath);
+  assert(fs.existsSync(fullPath), `missing required file: ${relativePath}`);
+  assert(fs.statSync(fullPath).isFile(), `required path is not a file: ${relativePath}`);
+  return fullPath;
+}
+
 function validateAnalysisResult(relativePath) {
   const doc = readJson(relativePath);
   assert(doc.schemaVersion === "0.1", `${relativePath}: schemaVersion must be "0.1"`);
@@ -49,6 +56,33 @@ function validateAnalysisResult(relativePath) {
       assert(edgeIds.has(step.edgeId), `${relativePath}: evidence edge ${step.edgeId} missing`);
     }
   }
+}
+
+function validateTechnicalReport() {
+  const texPath = "docs/technical-report/evanesca-technical-report.tex";
+  const pdfPath = "docs/technical-report/evanesca-technical-report.pdf";
+  const bibPath = "docs/technical-report/evanesca-technical-report.bib";
+  const readmePath = "docs/technical-report/README.md";
+
+  assertFile(texPath);
+  const pdfFullPath = assertFile(pdfPath);
+  assertFile(bibPath);
+  assertFile(readmePath);
+
+  const tex = fs.readFileSync(path.join(root, texPath), "utf8");
+  assert(tex.includes("IMC Measurement Snapshot"), `${texPath}: IMC measurement snapshot section required`);
+  assert(tex.includes("IMC Case-Study Partition"), `${texPath}: IMC case-study partition section required`);
+  assert(tex.includes("Validation and Accuracy Evidence"), `${texPath}: validation section required`);
+
+  const figures = Array.from(tex.matchAll(/\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}/g)).map(match => match[1]);
+  assert(figures.length > 0, `${texPath}: expected at least one included figure`);
+  for (const figure of figures) {
+    assertFile(path.join("docs/technical-report/figures", figure));
+  }
+
+  const pdf = fs.readFileSync(pdfFullPath);
+  assert(pdf.subarray(0, 4).toString("utf8") === "%PDF", `${pdfPath}: missing PDF header`);
+  assert(pdf.length > 100000, `${pdfPath}: PDF unexpectedly small`);
 }
 
 function validateManifest() {
@@ -140,4 +174,5 @@ function validatePublicArtifactsManifest() {
 
 validateManifest();
 validatePublicArtifactsManifest();
+validateTechnicalReport();
 console.log("public artifact validation passed");

@@ -29,17 +29,20 @@ browser.
 ## Core Checks
 
 ```bash
-# TypeScript build
+# Repository-wide TypeScript build (known release gate; currently fails)
 npm run build
 
-# Main mocha test suite
-npm test
+# Public CLI smoke path
+npm run analyze -- --help
 
-# Confirmed-incident benchmark
-npm run attack
+# Public artifact and report manifest checks
+npm run validate:public-artifacts
 ```
 
-The confirmed-incident benchmark may require archive RPC access and can be slow on a cold receipt cache.
+The current build failure scope is documented in
+`docs/source-code/build-status.md`. The confirmed-incident benchmark can be run
+with `npm run attack`, but it may require archive RPC access and can be slow on
+a cold receipt cache.
 
 ## Artifact Reproduction Levels
 

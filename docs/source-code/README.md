@@ -49,3 +49,6 @@ The current repository still contains historical research files and paper-era ma
 - private/local material to exclude from public branch.
 
 Current branch status and release blockers are tracked in `docs/release-status.md`.
+
+Repository-wide TypeScript build status is tracked in
+`docs/source-code/build-status.md`.

@@ -29,9 +29,6 @@ limitations, and public artifact boundary.
 
 - [docs/technical-report/evanesca-technical-report.pdf](docs/technical-report/evanesca-technical-report.pdf)
 
-The public `docs/` tree is intentionally kept small; source files and scripts
-remain in the repository for code inspection and smoke testing.
-
 ## Research Prototype Results
 
 The current research prototype was evaluated on 14,187,803 Ethereum transactions and a benchmark of 40 public DeFi incidents across five chains. The associated scalar set includes 1,418 flagged instances, 956 routine arbitrage baseline instances, 462 non-baseline instances, and 219 implementation-defect instances.
